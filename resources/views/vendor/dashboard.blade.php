@@ -9,7 +9,7 @@
 </head>
 
 <body>
-    <h1>Vendor Dashboard</h1>
+    <h1>vendor dashboard</h1>
 </body>
 
 </html>
