@@ -18,8 +18,8 @@
         href="{{ asset('backend/assets/modules/owlcarousel2/dist/assets/owl.theme.default.min.css') }}">
 
     <!-- Template CSS -->
-    <link rel="stylesheet" href="{{ asset('backend/assets/css/style.css') }}">
-    <link rel="stylesheet" href="{{ asset('backend/assets/css/components.css') }}">
+    <link rel="stylesheet" href="{{ asset('backend/assets/css/style.min.css') }}">
+    <link rel="stylesheet" href="{{ asset('backend/assets/css/components.min.css') }}">
     <!-- Start GA -->
 
     <!-- Toastr Notification CSS -->
@@ -97,7 +97,7 @@
     <script src="{{ asset('assets/js/custom.js') }}"></script>
 
     <!-- Toastr Notification JS -->
-    <x-notify::notify style="z-index: 1000" />
+    <x-notify::notify />
     @notifyJs
 
 </body>
