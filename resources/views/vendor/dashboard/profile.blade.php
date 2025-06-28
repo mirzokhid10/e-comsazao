@@ -1,10 +1,11 @@
-@extends('frontend.dashboard.layouts.master')
+@extends('vendor.layouts.master')
 
 @section('title')
-    Profile
+    User Profile
 @endsection
 
 @section('content')
+
     {{-- <!--=============================
         DASHBOARD START
       ==============================--> --}}
@@ -18,7 +19,16 @@
                         <div class="wsus__dashboard_profile">
                             <div class="wsus__dash_pro_area">
                                 <h4>basic information</h4>
-                                <form method="POST" action="{{ route('user.profile.update') }}"
+                                @if ($errors->any())
+                                    <div class="alert alert-danger">
+                                        <ul class="mb-0">
+                                            @foreach ($errors->all() as $error)
+                                                <li>{{ $error }}</li>
+                                            @endforeach
+                                        </ul>
+                                    </div>
+                                @endif
+                                <form method="POST" action="{{ route('vendor.profile.update') }}"
                                     enctype="multipart/form-data">
                                     @csrf
                                     @method('PUT')
@@ -74,7 +84,7 @@
                         <div class="wsus__dash_pro_area">
                             <h4>Update Password</h4>
                             <div class="wsus__dash_pass_change mt-2">
-                                <form method="POST" action="{{ route('user.profile.update.password') }}"
+                                <form method="POST" action="{{ route('vendor.profile.update.password') }}"
                                     enctype="multipart/form-data">
                                     @csrf
                                     <div class="row">
