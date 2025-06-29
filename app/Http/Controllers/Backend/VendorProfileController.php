@@ -60,7 +60,7 @@ class VendorProfileController extends Controller
     //     return redirect()->back();
     // }
 
-    public function updateProfile(Request $request)
+    public function updateProfile(Request $request, string $id)
     {
         try {
             $request->validate([

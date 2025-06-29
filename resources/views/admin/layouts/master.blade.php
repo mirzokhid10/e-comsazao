@@ -18,12 +18,14 @@
         href="{{ asset('backend/assets/modules/owlcarousel2/dist/assets/owl.theme.default.min.css') }}">
 
     <!-- Template CSS -->
-    <link rel="stylesheet" href="{{ asset('backend/assets/css/style.min.css') }}">
-    <link rel="stylesheet" href="{{ asset('backend/assets/css/components.min.css') }}">
+    <link rel="stylesheet" href="{{ asset('backend/assets/css/style.css') }}">
+    <link rel="stylesheet" href="{{ asset('backend/assets/css/components.css') }}">
     <!-- Start GA -->
 
+    {{-- Yajra Datatables CSS --}}
+    <link rel="stylesheet" href="//cdn.datatables.net/2.3.2/css/dataTables.dataTables.min.css">
+    {{-- <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/5.3.0/css/bootstrap.min.css"> --}}
     <!-- Toastr Notification CSS -->
-
     @notifyCss
     <script async src="https://www.googletagmanager.com/gtag/js?id=UA-94034622-3"></script>
     <script>
@@ -55,7 +57,7 @@
             <!-- Main Content -->
 
             <!-- Main Content -->
-            <div class="main-content">
+            <div class="main-content w-100 h-100">
                 @yield('content')
             </div>
 
@@ -100,6 +102,11 @@
     <x-notify::notify />
     @notifyJs
 
+    {{-- Yajra Datatables JS --}}
+    <script src="//cdn.datatables.net/2.3.2/js/dataTables.min.js"></script>
+    <script src="https://cdn.datatables.net/2.2.2/js/dataTables.bootstrap5.js"></script>
+
+    @stack('scripts')
 </body>
 
 </html>
