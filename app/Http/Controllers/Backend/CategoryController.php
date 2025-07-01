@@ -53,7 +53,7 @@ class CategoryController extends Controller
 
         $category->save();
 
-        notify()->success('Category Information Uploaded Successfully!');
+        notify()->success('Category Information Created Successfully!');
 
         return redirect()->route('admin.category.index');
     }

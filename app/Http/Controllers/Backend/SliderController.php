@@ -136,7 +136,7 @@ class SliderController extends Controller
 
         if ($hasChanges) {
             $slider->save();
-            notify()->success('Banner Slider Information Uploaded Successfully!');
+            notify()->success('Banner Slider Information Edited Successfully!');
             return redirect()->route('admin.slider.index');
         } else {
             notify()->info('No changes were made.');

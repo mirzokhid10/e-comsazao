@@ -13,12 +13,16 @@
                          class="fas fa-fire"></i><span>Dashboard</span></a>
              </li>
              <li class="menu-header">Starter</li>
-             <li class="dropdown {{ setActive(['admin.slider.*']) }}">
+             <li class="dropdown {{ setActive(['admin.slider.*', 'admin.brand.*']) }}">
                  <a href="#" class="nav-link has-dropdown" data-toggle="dropdown"><i class="fas fa-th"></i>
                      <span>Website Managment</span></a>
                  <ul class="dropdown-menu">
                      <li><a class="{{ setActive(['admin.slider.*']) }}" href="{{ route('admin.slider.index') }}">Main
                              Page Sliders</a></li>
+                 </ul>
+                 <ul class="dropdown-menu">
+                     <li><a class="{{ setActive(['admin.brand.*']) }}" href="{{ route('admin.brand.index') }}">Main
+                             Page Brands</a></li>
                  </ul>
 
              </li>
@@ -36,7 +40,6 @@
                              href="{{ route('admin.child-category.index') }}">Child
                              Categories</a></li>
                  </ul>
-
              </li>
          </ul>
      </aside>
