@@ -3931,6 +3931,16 @@ body:not(.sidebar-mini)
     }
 }
 
+/*# sourceMappingURL=style.css.map */
+
+.select2 {
+    width: 100% !important;
+}
+
+.msg-notification {
+    border: 5px solid #08c !important;
+}
+
 .notify {
     z-index: 1000 !important;
 }
@@ -3940,4 +3950,41 @@ body:not(.sidebar-mini)
     z-index: 1000 !important;
 }
 
-/*# sourceMappingURL=style.css.map */
+.swal-custom-confirm {
+    color: #fff !important;
+    background-color: #3085d6 !important;
+    border: none !important;
+}
+
+.swal-custom-confirm:hover {
+    background-color: #2563eb !important; /* a brighter blue on hover */
+}
+
+.swal-custom-cancel {
+    color: #fff !important;
+    background-color: #d33 !important;
+    border: none !important;
+}
+
+.swal-custom-cancel:hover {
+    background-color: #b91c1c !important; /* a deeper red on hover */
+}
+
+.custom-confirm-btn {
+    background-color: #f59e0b !important; /* Amber color */
+    color: #fff !important;
+    border: none !important;
+    font-weight: 600;
+    padding: 10px 22px;
+    border-radius: 5px;
+}
+
+.custom-confirm-btn:hover {
+    background-color: #d97706 !important; /* Darker on hover */
+    color: #fff !important;
+}
+
+.custom-swal-popup {
+    border: 2px solid #fbbf24 !important;
+    border-radius: 10px !important;
+}
