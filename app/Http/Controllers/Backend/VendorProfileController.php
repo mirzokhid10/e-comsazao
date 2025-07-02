@@ -16,50 +16,6 @@ class VendorProfileController extends Controller
         return view('frontend.dashboard.profile');
     }
 
-    // public function updateProfile(Request $request)
-    // {
-    //     try {
-    //         $request->validate([
-    //             'name' => ['required', 'max:30'],
-    //             'username' => ['required', 'max:30'],
-    //             'email' => ['required', 'email', Rule::unique('users')->ignore(Auth::id())],
-    //             'phone' => ['required', 'max:30'],
-    //             'image' => ['nullable', 'image', 'max:2048'],
-    //         ]);
-    //     } catch (ValidationException $e) {
-    //         notify()->error('Please correct the form errors and try again.');
-    //         return redirect()->back()
-    //             ->withErrors($e->validator)
-    //             ->withInput();
-    //     }
-
-    //     $user = Auth::user();
-
-    //     if ($request->hasFile('image')) {
-    //         if (File::exists(public_path($user->image))) {
-    //             File::delete(public_path($user->image));
-    //         }
-
-    //         $image = $request->image;
-    //         $imageName = rand() . '_' . $image->getClientOriginalName();
-    //         $image->move(public_path('uploads/userProfileImage'), $imageName);
-
-    //         $path = "/uploads/userProfileImage/" . $imageName;
-
-    //         $user->image = $path;
-    //     }
-
-    //     $user->name = $request->name;
-    //     $user->username = $request->username;
-    //     $user->email = $request->email;
-    //     $user->phone = $request->phone;
-    //     $user->save();
-
-    //     notify()->success('Profile Information Updated Successfully !');
-
-    //     return redirect()->back();
-    // }
-
     public function updateProfile(Request $request, string $id)
     {
         try {

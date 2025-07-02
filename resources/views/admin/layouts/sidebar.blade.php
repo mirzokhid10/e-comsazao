@@ -7,8 +7,8 @@
              <a href="{{ route('admin.dashboard') }}">St</a>
          </div>
          <ul class="sidebar-menu">
-             <li class="menu-header">Dashboard</li>
-             <li class="dropdown active">
+             <li class="menu-header {{ setActive(['admin.dashboard.*']) }}">Dashboard</li>
+             <li class="dropdown">
                  <a href="{{ route('admin.dashboard') }}" class="nav-link"><i
                          class="fas fa-fire"></i><span>Dashboard</span></a>
              </li>
@@ -39,6 +39,17 @@
                      <li><a class="{{ setActive(['admin.child-category.*']) }}"
                              href="{{ route('admin.child-category.index') }}">Child
                              Categories</a></li>
+                 </ul>
+             </li>
+         </ul>
+         <ul class="sidebar-menu">
+             <li class="menu-header">Transactions</li>
+             <li class="dropdown {{ setActive(['admin.vendor-profile.*']) }}">
+                 <a href="#" class="nav-link has-dropdown" data-toggle="dropdown"><i class="fas fa-th"></i>
+                     <span>Vendor Managment</span></a>
+                 <ul class="dropdown-menu">
+                     <li><a class="{{ setActive(['admin.vendor-profile.*']) }}"
+                             href="{{ route('admin.vendor-profile.index') }}">Vendors Managment</a></li>
                  </ul>
              </li>
          </ul>

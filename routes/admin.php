@@ -1,6 +1,7 @@
 <?php
 
 use App\Http\Controllers\Backend\AdminController;
+use App\Http\Controllers\Backend\AdminVendorProfileManagmentController;
 use App\Http\Controllers\Backend\BrandController;
 use App\Http\Controllers\Backend\CategoryController;
 use App\Http\Controllers\Backend\ChildCategoryController;
@@ -41,3 +42,10 @@ Route::resource('child-category', ChildCategoryController::class);
 
 Route::put('brand/change-status', [BrandController::class, 'changeStatus'])->name('brand.change-status');
 Route::resource('brand', BrandController::class);
+
+///////////////////////////////////////////
+////    Admin Vendor Profile Managment Route
+///////////////////////////////////////////
+
+Route::put('vendor-profile/change-status', [AdminVendorProfileManagmentController::class, 'changeStatus'])->name('vendor-profile.change-status');
+Route::resource('vendor-profile', AdminVendorProfileManagmentController::class);
