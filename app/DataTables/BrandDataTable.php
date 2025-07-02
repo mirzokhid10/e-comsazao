@@ -24,7 +24,11 @@ class BrandDataTable extends DataTable
         return (new EloquentDataTable($query))
             ->addColumn('action', function ($query) {
                 $editBtn = "<a href='" . route('admin.brand.edit', $query->id) . "' class='btn btn-primary'><i class='far fa-edit'></i></a>";
-                $deleteBtn = "<a href='javascript:void(0);' class='btn btn-danger delete-brand ml-2' data-id='{{ $query->id }}''> <i class='fas fa-trash'></i> </a>";
+                $deleteBtn = "
+                <form method='POST' action='" . route('admin.brand.destroy', $query->id) . "' style='display:inline-block;' onsubmit='return confirm(\"Are you sure?\")'>
+                    " . csrf_field() . method_field('DELETE') . "
+                    <button type='submit' class='btn btn-danger ml-2' style='background:#fc544b;'><i class='far fa-trash-alt'></i></button>
+                </form>";
 
                 return $editBtn . $deleteBtn;
             })

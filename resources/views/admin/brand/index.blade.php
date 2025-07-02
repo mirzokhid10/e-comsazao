@@ -68,33 +68,33 @@
             })
         })
 
-        $('body').on('click', '.delete-brand', function() {
-            let id = $(this).data('id');
+        // $('body').on('click', '.delete-brand', function() {
+        //     let id = $(this).data('id');
 
-            Swal.fire({
-                icon: 'warning',
-                title: 'Are you sure?',
-                text: "This brand will be permanently deleted!",
-                showCancelButton: true,
-                confirmButtonText: 'Yes, delete it!',
-                cancelButtonText: 'Cancel',
-                confirmButtonColor: '#3085d6',
-                cancelButtonColor: '#d33',
-            }).then((result) => {
-                if (result.isConfirmed) {
-                    $.ajax({
-                        url: '/admin/brand/' + id,
-                        method: 'DELETE',
-                        success: function(data) {
-                            Swal.fire('Deleted!', 'Brand deleted successfully.', 'success');
-                            $('.dataTable').DataTable().ajax.reload(null, false);
-                        },
-                        error: function(xhr) {
-                            Swal.fire('Error!', 'Failed to delete brand.', 'error');
-                        }
-                    });
-                }
-            });
-        });
+        //     Swal.fire({
+        //         icon: 'warning',
+        //         title: 'Are you sure?',
+        //         text: "This brand will be permanently deleted!",
+        //         showCancelButton: true,
+        //         confirmButtonText: 'Yes, delete it!',
+        //         cancelButtonText: 'Cancel',
+        //         confirmButtonColor: '#3085d6',
+        //         cancelButtonColor: '#d33',
+        //     }).then((result) => {
+        //         if (result.isConfirmed) {
+        //             $.ajax({
+        //                 url: '/admin/brand/' + id,
+        //                 method: 'DELETE',
+        //                 success: function(data) {
+        //                     Swal.fire('Deleted!', 'Brand deleted successfully.', 'success');
+        //                     $('.dataTable').DataTable().ajax.reload(null, false);
+        //                 },
+        //                 error: function(xhr) {
+        //                     Swal.fire('Error!', 'Failed to delete brand.', 'error');
+        //                 }
+        //             });
+        //         }
+        //     });
+        // });
     </script>
 @endpush
