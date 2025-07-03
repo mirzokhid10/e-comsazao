@@ -3953,7 +3953,13 @@ body:not(.sidebar-mini)
 .swal-custom-confirm {
     color: #fff !important;
     background-color: #3085d6 !important;
-    border: none !important;
+    margin: 0.3125em;
+    padding: 0.625em 1.1em;
+    transition: var(--swal2-action-button-transition);
+    border: none;
+    box-shadow: 0 0 0 3px rgba(0, 0, 0, 0);
+    font-weight: 500;
+    border-radius: 5px;
 }
 
 .swal-custom-confirm:hover {

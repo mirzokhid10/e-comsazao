@@ -7,7 +7,7 @@ use App\Models\Vendor;
 use Illuminate\Database\Console\Seeds\WithoutModelEvents;
 use Illuminate\Database\Seeder;
 
-class VendorShopProfileSeeder extends Seeder
+class AdminProfileSeeder extends Seeder
 {
     /**
      * Run the database seeds.
@@ -18,14 +18,12 @@ class VendorShopProfileSeeder extends Seeder
 
         $vendor = new Vendor();
         $vendor->banner = 'uploads/1343.jpg';
-        $vendor->shop_name = 'Vendor Shop';
+        $vendor->shop_name = 'Admin Shop';
         $vendor->phone = '12321312';
-        $vendor->email = 'vendor@gmail.com';
+        $vendor->email = 'admin@gmail.com';
         $vendor->address = 'Usa';
         $vendor->description = 'shop description';
         $vendor->user_id = $user->id;
-        $vendor->status = 1;
-
         $vendor->save();
     }
 }

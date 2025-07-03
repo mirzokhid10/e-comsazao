@@ -19,11 +19,12 @@
                  <ul class="dropdown-menu">
                      <li><a class="{{ setActive(['admin.slider.*']) }}" href="{{ route('admin.slider.index') }}">Main
                              Page Sliders</a></li>
-                 </ul>
-                 <ul class="dropdown-menu">
                      <li><a class="{{ setActive(['admin.brand.*']) }}" href="{{ route('admin.brand.index') }}">Main
                              Page Brands</a></li>
+                     <li class="{{ setActive(['admin.products.*']) }}"><a class="nav-link"
+                             href="{{ route('admin.products.index') }}">Products</a></li>
                  </ul>
+
 
              </li>
              <li

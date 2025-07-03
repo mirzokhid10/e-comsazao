@@ -5,6 +5,9 @@ use App\Http\Controllers\Backend\AdminVendorProfileManagmentController;
 use App\Http\Controllers\Backend\BrandController;
 use App\Http\Controllers\Backend\CategoryController;
 use App\Http\Controllers\Backend\ChildCategoryController;
+use App\Http\Controllers\Backend\ProductController;
+use App\Http\Controllers\Backend\ProductImageGalleryController;
+use App\Http\Controllers\Backend\ProductVariantController;
 use App\Http\Controllers\Backend\ProfileController;
 use App\Http\Controllers\Backend\SliderController;
 use App\Http\Controllers\Backend\SubCategoryController;
@@ -49,3 +52,23 @@ Route::resource('brand', BrandController::class);
 
 Route::put('vendor-profile/change-status', [AdminVendorProfileManagmentController::class, 'changeStatus'])->name('vendor-profile.change-status');
 Route::resource('vendor-profile', AdminVendorProfileManagmentController::class);
+
+///////////////////////////////////////////
+////    Admin Product Routes
+///////////////////////////////////////////
+
+Route::get('products/get-subcategories', [ProductController::class, 'getSubCategories'])->name('products.get-subcategories');
+Route::get('product/get-child-categories', [ProductController::class, 'getChildCategories'])->name('products.get-child-categories');
+Route::put('products/change-status', [ProductController::class, 'changeStatus'])->name('products.change-status');
+Route::resource('products', ProductController::class);
+
+///////////////////////////////////////////
+////    Admin Product Image Gallery Route
+///////////////////////////////////////////
+Route::resource('products-image-gallery', ProductImageGalleryController::class);
+
+///////////////////////////////////////////
+////    Admin Product Variant Route
+///////////////////////////////////////////
+Route::put('products-variant/change-status', [ProductVariantController::class, 'changeStatus'])->name('products-variant.change-status');
+Route::resource('products-variant', ProductVariantController::class);

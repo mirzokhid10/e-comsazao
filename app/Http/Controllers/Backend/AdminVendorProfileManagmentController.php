@@ -35,6 +35,8 @@ class AdminVendorProfileManagmentController extends Controller
      */
     public function store(Request $request)
     {
+        dd(Auth::user());
+
         try {
             $request->validate([
                 'banner' => ['nullable', 'image', 'max:3000'],
