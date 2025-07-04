@@ -8,6 +8,8 @@ use App\Models\Brand;
 use App\Models\Category;
 use App\Models\ChildCategory;
 use App\Models\Product;
+use App\Models\ProductImageGallery;
+use App\Models\ProductVariant;
 use App\Models\SubCategory;
 use App\Traits\ImageUploadTrait;
 use Illuminate\Validation\ValidationException;
@@ -81,12 +83,7 @@ class ProductController extends Controller
                 'seo_description' => ['nullable', 'max:250'],
                 'status' => ['required']
             ]);
-        }
-        // catch (ValidationException $e) {
-        //     notify()->error('Please correct the form errors and try again.');
-        //     return redirect()->back()->withErrors($e->validator)->withInput();
-        // }
-        catch (ValidationException $e) {
+        } catch (ValidationException $e) {
             Log::error('Validation failed:', $e->validator->errors()->all());
             notify()->error('Please correct the form errors and try again.');
             return redirect()->back()->withErrors($e->validator)->withInput();
@@ -226,8 +223,25 @@ class ProductController extends Controller
     {
         $product = Product::findOrFail($id);
 
-        /** Delte the main product image */
-        $this->deleteImage($product->thumb_image);
+        // Delete The Main Product Image
+        if ($product->thumb_image) {
+            $this->deleteImage($product->thumb_image);
+        }
+
+        $galleryImages = ProductImageGallery::where('product_id', $product->id)->get();
+        foreach ($galleryImages as $image) {
+            /** Delete the gallery images */
+            $this->deleteImage($image->image);
+            $image->delete();
+        }
+
+        // Delete if the product variant exist
+        $productVariants = ProductVariant::where('product_id', $product->id)->get();
+
+        foreach ($productVariants as $productVariant) {
+            $productVariant->productVariantItems()->delete();
+            $productVariant->delete();
+        }
 
         $product->delete();
 
