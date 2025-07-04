@@ -56,7 +56,10 @@ class ProductVariantController extends Controller
         $productVariant->save();
 
         notify()->success('Product Variant Created Successfully!');
-        return redirect()->route('admin.products-variant.index', ['product' => $request->product]);
+        return redirect()->route(
+            'admin.products-variant.index',
+            ['product' => $request->product]
+        );
     }
 
     /**

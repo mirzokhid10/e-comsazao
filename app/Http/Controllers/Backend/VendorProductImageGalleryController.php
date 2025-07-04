@@ -2,30 +2,37 @@
 
 namespace App\Http\Controllers\Backend;
 
-use App\DataTables\ProductImageGalleryDataTable;
+use App\DataTables\VendorProductImageGalleriesDataTable;
 use App\Http\Controllers\Controller;
 use App\Models\Product;
 use App\Models\ProductImageGallery;
 use App\Traits\ImageUploadTrait;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Auth;
 use Illuminate\Validation\ValidationException;
 
-class ProductImageGalleryController extends Controller
+class VendorProductImageGalleryController extends Controller
 {
     use ImageUploadTrait;
     /**
      * Display a listing of the resource.
      */
-    public function index(ProductImageGalleryDataTable $dataTable, Request $request)
+    public function index(VendorProductImageGalleriesDataTable $dataTable, Request $request)
     {
         $product = Product::findOrFail($request->product);
-        return $dataTable->render('admin.products.image-gallery.index', compact('product'));
+        if ($product->vendor_id != Auth::user()->vendor->id) {
+            abort(404);
+        }
+        return $dataTable->render('vendor.products.image-gallery.index', compact('product'));
     }
 
     /**
      * Show the form for creating a new resource.
      */
-    public function create() {}
+    public function create()
+    {
+        //
+    }
 
     /**
      * Store a newly created resource in storage.
@@ -51,8 +58,7 @@ class ProductImageGalleryController extends Controller
             $productImageGallery->save();
         }
 
-        notify()->success('Product images have been added successfully!');
-
+        notify()->success('Product Images Have Been Added Successfully!');
         return redirect()->back();
     }
 
@@ -86,10 +92,13 @@ class ProductImageGalleryController extends Controller
     public function destroy(string $id)
     {
         $productImage = ProductImageGallery::findOrFail($id);
+        if ($productImage->product->vendor_id != Auth::user()->vendor->id) {
+            abort(404);
+        }
         $this->deleteImage($productImage->image);
         $productImage->delete();
 
-        notify()->success('Product image has been deleted successfully!');
+        notify()->success('Product Image Has Been Deleted Successfully!');
         return redirect()->back();
     }
 }

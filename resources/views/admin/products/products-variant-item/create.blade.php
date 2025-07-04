@@ -14,7 +14,6 @@
                     <div class="card">
                         <div class="card-header">
                             <h4>Create Variant Item</h4>
-
                         </div>
                         <div class="card-body">
                             <form action="{{ route('admin.products-variant-item.store') }}" method="POST">

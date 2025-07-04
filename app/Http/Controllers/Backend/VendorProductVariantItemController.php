@@ -2,35 +2,41 @@
 
 namespace App\Http\Controllers\Backend;
 
-use App\DataTables\ProductVariantItemDataTable;
+use App\DataTables\VendorProductVariantItemDataTable;
 use App\Http\Controllers\Controller;
-use Illuminate\Validation\ValidationException;
 use App\Models\Product;
 use App\Models\ProductVariant;
 use App\Models\ProductVariantItem;
+use App\Models\Vendor;
+use Illuminate\Validation\ValidationException;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Auth;
 
-class ProductVariantItemController extends Controller
+class VendorProductVariantItemController extends Controller
 {
     /**
      * Display a listing of the resource.
      */
-    public function index(ProductVariantItemDataTable $dataTable, $productId, $productVariantId)
+    public function index(VendorProductVariantItemDataTable $dataTable, $productId, $productVariantId)
     {
         $product = Product::findOrFail($productId);
+
         $productVariant = ProductVariant::findOrFail($productVariantId);
         return $dataTable->render(
-            'admin.products.products-variant-item.index',
+            'vendor.products.products-variant-item.index',
             compact('product', 'productVariant')
         );
     }
 
+    /**
+     * Show the form for creating a new resource.
+     */
     public function create(string $productId, string $productVariantId)
     {
         $product = Product::findOrFail($productId);
         $productVariant = ProductVariant::findOrFail($productVariantId);
         return view(
-            'admin.products.products-variant-item.create',
+            'vendor.products.products-variant-item.create',
             compact('product', 'productVariant')
         );
     }
@@ -65,7 +71,7 @@ class ProductVariantItemController extends Controller
 
         notify()->success('Product Variant Item Created Successfully!');
 
-        return redirect()->route('admin.products-variant-item.index', [
+        return redirect()->route('vendor.products-variant-item.index', [
             'productId' => $request->product_id,
             'productVariantId' => $request->productVariant_id
         ]);
@@ -86,7 +92,7 @@ class ProductVariantItemController extends Controller
     {
         $productVariantItem = ProductVariantItem::findOrFail($productVariantId);
         return view(
-            'admin.products.products-variant-item.edit',
+            'vendor.products.products-variant-item.edit',
             compact('productVariantItem')
         );
     }
@@ -117,7 +123,7 @@ class ProductVariantItemController extends Controller
         $productVariantItem->save();
         notify()->success('Product Variant Item Updated Successfully!');
 
-        return redirect()->route('admin.products-variant-item.index', [
+        return redirect()->route('vendor.products-variant-item.index', [
             // Here i am getting really assumed
             'productId' => $productVariantItem->productVariant->product_id,
             'productVariantId' => $productVariantItem->product_variant_id

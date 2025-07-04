@@ -9668,3 +9668,42 @@ a:not([href]):not([class]):hover {
     bottom: 0 !important;
     /* position: absolute !important; */
 }
+
+.swal-custom-confirm {
+    color: #fff !important;
+    background-color: #3085d6 !important;
+    margin: 0.3125em;
+    padding: 0.625em 1.1em;
+    transition: var(--swal2-action-button-transition);
+    border: none;
+    box-shadow: 0 0 0 3px rgba(0, 0, 0, 0);
+    font-weight: 500;
+    border-radius: 5px;
+}
+
+.swal-custom-confirm:hover {
+    background-color: #2563eb !important; /* a brighter blue on hover */
+}
+
+.btn-primary_data-btn {
+    background-color: #0d6efd !important;
+}
+
+.btn-primary_data-btn:hover {
+    background-color: #0069d9 !important;
+}
+
+.btn-info {
+    box-shadow: 0 2px 6px #82d3f8 !important;
+    background-color: #3abaf4 !important;
+    border-color: #3abaf4 !important;
+    color: #fff !important;
+}
+.btn-info:hover,
+.btn-info:focus,
+.btn-info:active,
+.btn-info.disabled:hover,
+.btn-info.disabled:focus,
+.btn-info.disabled:active {
+    background-color: #0da8ee !important;
+}
