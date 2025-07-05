@@ -4,23 +4,16 @@
     <!-- Main Content -->
     <section class="section">
         <div class="section-header">
-            <h1>Product Variant Items</h1>
+            <h1>Sellers Pending Products</h1>
         </div>
-        <div class="mb-3">
-            <a href="{{ route('admin.products-variant.index', ['product' => $product->id]) }}"
-                class="btn btn-primary">Back</a>
-        </div>
+
         <div class="section-body">
 
             <div class="row">
                 <div class="col-12">
                     <div class="card">
                         <div class="card-header">
-                            <h4>Variant: {{ $productVariant->name }} </h4>
-                            <div class="card-header-action">
-                                <a href="{{ route('admin.products-variant-item.create', ['productId' => $product->id, 'productVariantId' => $productVariant->id]) }}"
-                                    class="btn btn-primary"><i class="fas fa-plus"></i> Create New</a>
-                            </div>
+                            <h4>All Seller Pending Products</h4>
                         </div>
                         <div class="card-body">
                             {{ $dataTable->table() }}
@@ -49,7 +42,7 @@
                 let id = $(this).data('id');
 
                 $.ajax({
-                    url: "{{ route('admin.products-variant-item.change-status') }}",
+                    url: "{{ route('admin.products.change-status') }}",
                     method: 'PUT',
                     data: {
                         status: isChecked,
@@ -67,6 +60,28 @@
                             buttonsStyling: false // this disables the default SweetAlert styles
 
                         });
+                    },
+                    error: function(xhr, status, error) {
+                        console.log(error);
+                    }
+                })
+
+            })
+
+            // change approve status
+            $('body').on('change', '.is_approve', function() {
+                let value = $(this).val();
+                let id = $(this).data('id');
+
+                $.ajax({
+                    url: "{{ route('admin.change-approve-status') }}",
+                    method: 'PUT',
+                    data: {
+                        value: value,
+                        id: id
+                    },
+                    success: function(data) {
+                        window.location.reload();
                     },
                     error: function(xhr, status, error) {
                         console.log(error);

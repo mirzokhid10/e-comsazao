@@ -13,7 +13,17 @@
                          class="fas fa-fire"></i><span>Dashboard</span></a>
              </li>
              <li class="menu-header">Starter</li>
-             <li class="dropdown {{ setActive(['admin.slider.*', 'admin.brand.*']) }}">
+             <li
+                 class="dropdown {{ setActive([
+                     'admin.slider.*',
+                     'admin.brand.*',
+                     'admin.products.*',
+                     'admin.products-image-gallery.*',
+                     'admin.products-variant.*',
+                     'admin.products-variant-item.*',
+                     'admin.seller-products.*',
+                     'admin.seller-pending-products.*',
+                 ]) }}">
                  <a href="#" class="nav-link has-dropdown" data-toggle="dropdown"><i class="fas fa-th"></i>
                      <span>Website Managment</span></a>
                  <ul class="dropdown-menu">
@@ -21,8 +31,19 @@
                              Page Sliders</a></li>
                      <li><a class="{{ setActive(['admin.brand.*']) }}" href="{{ route('admin.brand.index') }}">Main
                              Page Brands</a></li>
-                     <li class="{{ setActive(['admin.products.*']) }}"><a class="nav-link"
-                             href="{{ route('admin.products.index') }}">Products</a></li>
+                     <li
+                         class="{{ setActive([
+                             'admin.products.*',
+                             'admin.products-image-gallery.*',
+                             'admin.products-variant.*',
+                             'admin.products-variant-item.*',
+                         ]) }}">
+                         <a class="nav-link" href="{{ route('admin.products.index') }}">Products</a>
+                     </li>
+                     <li class="{{ setActive(['admin.seller-products.*']) }}"><a class="nav-link"
+                             href="{{ route('admin.seller-products.index') }}">Seller Products</a></li>
+                     <li class="{{ setActive(['admin.seller-pending-products.*']) }}"><a class="nav-link"
+                             href="{{ route('admin.seller-pending-products.index') }}">Seller Pending Products</a></li>
                  </ul>
 
 
