@@ -2,8 +2,9 @@
 
 namespace App\Http\Controllers\Backend;
 
-use App\DataTables\SellerPendingProductsDataTable;
 use App\DataTables\SellerProductsDataTable;
+use App\DataTables\SellerPendingProductsDataTable;
+
 use App\Http\Controllers\Controller;
 use App\Models\Product;
 use Illuminate\Http\Request;

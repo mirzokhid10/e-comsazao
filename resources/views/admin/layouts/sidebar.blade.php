@@ -13,10 +13,22 @@
                          class="fas fa-fire"></i><span>Dashboard</span></a>
              </li>
              <li class="menu-header">Starter</li>
+             <li class="dropdown {{ setActive(['admin.slider.*', 'admin.brand.*', 'admin.flash-sale.*']) }}">
+                 <a href="#" class="nav-link has-dropdown" data-toggle="dropdown"><i class="fas fa-th"></i>
+                     <span>Website Managment</span></a>
+                 <ul class="dropdown-menu">
+                     <li><a class="{{ setActive(['admin.slider.*']) }}" href="{{ route('admin.slider.index') }}">Main
+                             Page Sliders</a></li>
+                     <li><a class="{{ setActive(['admin.brand.*']) }}" href="{{ route('admin.brand.index') }}">Main
+                             Page Brands</a></li>
+                     <li><a class="{{ setActive(['admin.flash-sale.*']) }}"
+                             href="{{ route('admin.flash-sale.index') }}">
+                             Flash Sale Pages</a></li>
+                 </ul>
+             </li>
+             <li class="menu-header">Products</li>
              <li
                  class="dropdown {{ setActive([
-                     'admin.slider.*',
-                     'admin.brand.*',
                      'admin.products.*',
                      'admin.products-image-gallery.*',
                      'admin.products-variant.*',
@@ -25,12 +37,8 @@
                      'admin.seller-pending-products.*',
                  ]) }}">
                  <a href="#" class="nav-link has-dropdown" data-toggle="dropdown"><i class="fas fa-th"></i>
-                     <span>Website Managment</span></a>
+                     <span>Product Managment</span></a>
                  <ul class="dropdown-menu">
-                     <li><a class="{{ setActive(['admin.slider.*']) }}" href="{{ route('admin.slider.index') }}">Main
-                             Page Sliders</a></li>
-                     <li><a class="{{ setActive(['admin.brand.*']) }}" href="{{ route('admin.brand.index') }}">Main
-                             Page Brands</a></li>
                      <li
                          class="{{ setActive([
                              'admin.products.*',
@@ -48,6 +56,7 @@
 
 
              </li>
+             <li class="menu-header">Categories</li>
              <li
                  class="dropdown {{ setActive(['admin.category.*', 'admin.sub-category.*', 'admin.child-category.*']) }}">
                  <a href="#" class="nav-link has-dropdown" data-toggle="dropdown"><i class="fas fa-th"></i>
