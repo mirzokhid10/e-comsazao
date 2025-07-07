@@ -9,6 +9,7 @@
         <li><a class="active" href="{{ route('user.dashboard') }}"><i class="fas fa-tachometer"></i>Dashboard</a></li>
 
         <li><a href="{{ route('user.profile') }}"><i class="far fa-user"></i> My Profile</a></li>
+        <li><a class="" href="{{ route('user.address.index') }}"><i class="fas fa-user"></i>Address</a></li>
         <li>
             <form method="POST" action="{{ route('logout') }}" class="">
                 @csrf
