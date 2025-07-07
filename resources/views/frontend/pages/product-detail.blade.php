@@ -15,7 +15,7 @@
                     <div class="col-12">
                         <h4>products details</h4>
                         <ul>
-                            <li><a href="#">home</a></li>
+                            <li><a href="/">home</a></li>
                             <li><a href="#">peoduct</a></li>
                             <li><a href="#">product details</a></li>
                         </ul>
@@ -83,20 +83,12 @@
                                 <h4>{{ $product->price }}</h4>
                             @endif
                             <p class="wsus__pro_rating">
-                                @php
-                                    $avgRating = $product->reviews()->avg('rating');
-                                    $fullRating = round($avgRating);
-                                @endphp
 
                                 @for ($i = 1; $i <= 5; $i++)
-                                    @if ($i <= $fullRating)
-                                        <i class="fas fa-star"></i>
-                                    @else
-                                        <i class="far fa-star"></i>
-                                    @endif
+                                    <i class="far fa-star"></i>
                                 @endfor
 
-                                <span>({{ count($product->reviews) }} review)</span>
+                                <span>(review)</span>
                             </p>
                             <p class="description">{!! $product->short_description !!}</p>
                             <form class="shopping-cart-form">
@@ -130,19 +122,16 @@
                                         <input class="number_area" name="qty" type="text" min="1"
                                             max="100" value="1" />
                                     </div>
-
                                 </div>
-
                                 <ul class="wsus__button_area">
                                     <li><button type="submit" class="add_cart" href="#">add to cart</button></li>
-
-
                                     <li><a style="border: 1px solid gray;
                                         padding: 7px 11px;
                                         border-radius: 100%;"
                                             href="javascript:;" class="add_to_wishlist" data-id="{{ $product->id }}"><i
-                                                class="fal fa-heart"></i></a></li>
-
+                                                class="fal fa-heart"></i>
+                                        </a>
+                                    </li>
                                     <li>
                                         <button type="button"
                                             style="border: 1px solid gray;
@@ -213,19 +202,11 @@
                                                 <div class="wsus__pro_det_vendor_text">
                                                     <h4>{{ $product->vendor->user->name }}</h4>
                                                     <p class="rating">
-                                                        @php
-                                                            $avgRating = $product->reviews()->avg('rating');
-                                                            $fullRating = round($avgRating);
-                                                        @endphp
 
                                                         @for ($i = 1; $i <= 5; $i++)
-                                                            @if ($i <= $fullRating)
-                                                                <i class="fas fa-star"></i>
-                                                            @else
-                                                                <i class="far fa-star"></i>
-                                                            @endif
+                                                            <i class="far fa-star"></i>
                                                         @endfor
-                                                        <span>({{ count($product->reviews) }} review)</span>
+                                                        <span>(review)</span>
                                                     </p>
                                                     <p><span>Store Name:</span> {{ $product->vendor->shop_name }}</p>
                                                     <p><span>Address:</span> {{ $product->vendor->address }}</p>
@@ -249,40 +230,6 @@
                                             <div class="row">
                                                 <div class="col-xl-8 col-lg-7">
                                                     <div class="wsus__comment_area">
-                                                        <h4>Reviews <span>{{ count($reviews) }}</span></h4>
-                                                        @foreach ($reviews as $review)
-                                                            <div class="wsus__main_comment">
-                                                                <div class="wsus__comment_img">
-                                                                    <img src="{{ asset($review->user->image) }}"
-                                                                        alt="user" class="img-fluid w-100">
-                                                                </div>
-                                                                <div class="wsus__comment_text reply">
-                                                                    <h6>{{ $review->user->name }}
-                                                                        <span>{{ $review->rating }} <i
-                                                                                class="fas fa-star"></i></span>
-                                                                    </h6>
-                                                                    <span>{{ date('d M Y', strtotime($review->created_at)) }}</span>
-                                                                    <p>{{ $review->review }}
-                                                                    </p>
-                                                                    <ul class="">
-                                                                        @if (count($review->productReviewGalleries) > 0)
-                                                                            @foreach ($review->productReviewGalleries as $image)
-                                                                                <li><img src="{{ asset($image->image) }}"
-                                                                                        alt="product" class="img-fluid ">
-                                                                                </li>
-                                                                            @endforeach
-                                                                        @endif
-
-                                                                    </ul>
-                                                                </div>
-                                                            </div>
-                                                        @endforeach
-
-                                                        <div class="mt-5">
-                                                            @if ($reviews->hasPages())
-                                                                {{ $reviews->links() }}
-                                                            @endif
-                                                        </div>
                                                     </div>
                                                 </div>
                                                 <div class="col-xl-4 col-lg-5 mt-4 mt-lg-0">

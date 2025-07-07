@@ -9707,3 +9707,20 @@ a:not([href]):not([class]):hover {
 .btn-info.disabled:active {
     background-color: #0da8ee !important;
 }
+
+.add_cart {
+    padding: 10px 20px;
+    font-size: 14px;
+    margin-right: 10px;
+    border: none;
+    border-radius: 30px;
+    background-color: #0088cc !important;
+}
+
+.add_cart:hover {
+    background: #02527a !important;
+}
+
+#sticky_pro_zoom {
+    z-index: 9999 !important;
+}

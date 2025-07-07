@@ -21,6 +21,9 @@
                              Page Sliders</a></li>
                      <li><a class="{{ setActive(['admin.brand.*']) }}" href="{{ route('admin.brand.index') }}">Main
                              Page Brands</a></li>
+                     <li><a class="{{ setActive(['admin.setting.*']) }}" href="{{ route('admin.setting.index') }}">
+                             Main Page Settings</a>
+                     </li>
                      <li><a class="{{ setActive(['admin.flash-sale.*']) }}"
                              href="{{ route('admin.flash-sale.index') }}">
                              Flash Sale Pages</a></li>
@@ -81,6 +84,8 @@
                  <ul class="dropdown-menu">
                      <li><a class="{{ setActive(['admin.vendor-profile.*']) }}"
                              href="{{ route('admin.vendor-profile.index') }}">Vendors Managment</a></li>
+                     <li><a class="{{ setActive(['admin.coupon.*']) }}"
+                             href="{{ route('admin.coupon.index') }}">Coupons Managment</a></li>
                  </ul>
              </li>
          </ul>
