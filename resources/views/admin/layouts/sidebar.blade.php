@@ -78,7 +78,8 @@
          </ul>
          <ul class="sidebar-menu">
              <li class="menu-header">Transactions</li>
-             <li class="dropdown {{ setActive(['admin.vendor-profile.*']) }}">
+             <li
+                 class="dropdown {{ setActive(['admin.vendor-profile.*', 'admin.coupon.*', 'admin.shipping-rule.*']) }}">
                  <a href="#" class="nav-link has-dropdown" data-toggle="dropdown"><i class="fas fa-th"></i>
                      <span>Vendor Managment</span></a>
                  <ul class="dropdown-menu">
@@ -86,6 +87,8 @@
                              href="{{ route('admin.vendor-profile.index') }}">Vendors Managment</a></li>
                      <li><a class="{{ setActive(['admin.coupon.*']) }}"
                              href="{{ route('admin.coupon.index') }}">Coupons Managment</a></li>
+                     <li><a class="{{ setActive(['admin.shipping-rule.*']) }}"
+                             href="{{ route('admin.shipping-rule.index') }}">Shipping Rules Managment</a></li>
                  </ul>
              </li>
          </ul>

@@ -138,9 +138,9 @@ class CouponController extends Controller
     /**
      * Change the status of the coupon.
      */
-    public function changeStatus(Request $request, string $id)
+    public function changeStatus(Request $request)
     {
-        $coupon = Coupon::findOrFail($id);
+        $coupon = Coupon::findOrFail($request->id);
         $coupon->status = $request->status == 'true' ? 1 : 0;
         $coupon->save();
 
