@@ -1,7 +1,7 @@
 @extends('vendor.layouts.master')
 
 @section('title')
-    Product Variant
+    {{ $settings->site_name }} || Product Variant
 @endsection
 
 @section('content')

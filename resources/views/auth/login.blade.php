@@ -1,7 +1,7 @@
 @extends('frontend.layouts.master')
 
 @section('title')
-    Login
+    {{ $settings->site_name }} || Login
 @endsection
 
 @section('content')

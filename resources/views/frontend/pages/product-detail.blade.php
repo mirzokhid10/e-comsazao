@@ -1,7 +1,7 @@
 @extends('frontend.layouts.master')
 
 @section('title')
-    Product Details
+    {{ $settings->site_name }} || Product Details
 @endsection
 
 @section('content')

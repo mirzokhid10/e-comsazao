@@ -1,7 +1,7 @@
 @extends('vendor.layouts.master')
 
 @section('title')
-    Shop Profile
+    {{ $settings->site_name }} || Shop Profile
 @endsection
 
 @section('content')
