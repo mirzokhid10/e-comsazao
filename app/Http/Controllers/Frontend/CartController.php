@@ -49,7 +49,6 @@ class CartController extends Controller
             }
         }
 
-
         /** check discount */
         $productPrice = 0;
 
@@ -132,6 +131,7 @@ class CartController extends Controller
     {
         Cart::destroy();
 
+
         return response(['status' => 'success', 'message' => 'Cart cleared successfully']);
     }
 
@@ -167,7 +167,7 @@ class CartController extends Controller
     public function applyCoupon(Request $request)
     {
         if ($request->coupon_code === null) {
-            return response(['status' => 'error', 'message' => 'Coupon filed is required']);
+            return response(['status' => 'error', 'message' => 'Coupon Filed Is Required']);
         }
 
         $coupon = Coupon::where(['code' => $request->coupon_code, 'status' => 1])->first();
@@ -198,7 +198,7 @@ class CartController extends Controller
             ]);
         }
 
-        return response(['status' => 'success', 'message' => 'Coupon applied successfully!']);
+        return response(['status' => 'success', 'message' => 'Coupon Applied Successfully!']);
     }
 
     /** Calculate coupon discount */

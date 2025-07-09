@@ -9724,3 +9724,79 @@ a:not([href]):not([class]):hover {
 #sticky_pro_zoom {
     z-index: 9999 !important;
 }
+
+/* Ajax Container */
+
+#ajax-alert-container {
+    position: absolute;
+    top: 20px;
+    right: 20px;
+    z-index: 1050;
+    max-width: 320px;
+}
+
+.ajax-alert {
+    padding: 12px 18px;
+    border-radius: 6px;
+    font-size: 0.95rem;
+    color: #fff;
+    margin-bottom: 12px;
+    box-shadow: 0 5px 15px rgba(0, 0, 0, 0.08);
+    animation: fadeIn 0.3s ease-in-out;
+}
+
+.ajax-alert-success {
+    background-color: #198754;
+}
+.ajax-alert-error {
+    background-color: #dc3545;
+}
+
+@keyframes fadeIn {
+    from {
+        opacity: 0;
+        transform: translateY(-10px);
+    }
+    to {
+        opacity: 1;
+        transform: translateY(0);
+    }
+}
+
+.swal-custom-cancel {
+    color: #fff !important;
+    background-color: #d33 !important;
+    border: none !important;
+}
+
+.swal-custom-cancel:hover {
+    background-color: #b91c1c !important; /* a deeper red on hover */
+}
+
+.swal-custom-confirm {
+    color: #fff !important;
+    background-color: #3085d6 !important;
+    margin: 0.3125em;
+    padding: 0.625em 1.1em;
+    transition: var(--swal2-action-button-transition);
+    border: none;
+    box-shadow: 0 0 0 3px rgba(0, 0, 0, 0);
+    font-weight: 500;
+    border-radius: 5px;
+}
+
+.swal-custom-confirm:hover {
+    background-color: #02527a !important; /* a brighter blue on hover */
+}
+
+.btn-primary {
+    color: #fff;
+    background-color: #0d6efd !important;
+    border-color: #0d6efd;
+}
+
+.btn-primary:hover {
+    color: #fff;
+    background-color: #0b5ed7 !important;
+    border-color: #0a58ca;
+}

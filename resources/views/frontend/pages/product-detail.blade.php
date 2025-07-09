@@ -268,7 +268,7 @@
                                                 </div>
                                                 <div class="col-xl-4 col-lg-5 mt-4 mt-lg-0">
                                                     @auth
-                                                        @php
+                                                        {{-- @php
                                                             $isBrought = false;
                                                             $orders = \App\Models\Order::where([
                                                                 'user_id' => auth()->user()->id,
@@ -285,9 +285,9 @@
                                                                 }
                                                             }
 
-                                                        @endphp
+                                                        @endphp --}}
 
-                                                        @if ($isBrought === true)
+                                                        {{-- @if ($isBrought === true)
                                                             <div class="wsus__post_comment rev_mar" id="sticky_sidebar3">
                                                                 <h4>write a Review</h4>
                                                                 <form action="{{ route('user.review.create') }}"
@@ -335,7 +335,7 @@
                                                                         review</button>
                                                                 </form>
                                                             </div>
-                                                        @endif
+                                                        @endif --}}
                                                     @endauth
 
                                                 </div>
