@@ -6,15 +6,12 @@
         <div class="section-header">
             <h1>Product Variant</h1>
         </div>
-
         <div class="section-body">
-
             <div class="row">
                 <div class="col-12">
                     <div class="card">
                         <div class="card-header">
                             <h4>Update Variant</h4>
-
                         </div>
                         <div class="card-body">
                             <form action="{{ route('admin.products-variant.update', $productVariant->id) }}" method="POST">

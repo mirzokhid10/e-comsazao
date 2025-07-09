@@ -15,7 +15,7 @@
                     <div class="col-12">
                         <h4>products details</h4>
                         <ul>
-                            <li><a href="/">home</a></li>
+                            <li><a href="{{ auth()->check() ? route('user.dashboard') : '/' }}">home</a></li>
                             <li><a href="#">peoduct</a></li>
                             <li><a href="#">product details</a></li>
                         </ul>
@@ -76,11 +76,11 @@
                                     item)</p>
                             @endif
                             @if (checkDiscount($product))
-                                <h4>{{ $product->offer_price }}
-                                    <del>{{ $product->price }}</del>
+                                <h4>{{ $settings->currency_icon }}{{ $product->offer_price }}
+                                    <del>{{ $settings->currency_icon }}{{ $product->price }}</del>
                                 </h4>
                             @else
-                                <h4>{{ $product->price }}</h4>
+                                <h4>{{ $settings->currency_icon }}{{ $product->price }}</h4>
                             @endif
                             <p class="wsus__pro_rating">
 
@@ -88,14 +88,16 @@
                                     <i class="far fa-star"></i>
                                 @endfor
 
-                                <span>(review)</span>
+                                <span>review</span>
                             </p>
                             <p class="description">{!! $product->short_description !!}</p>
-                            <form class="shopping-cart-form">
-                                {{-- <div class="wsus__selectbox">
+
+                            <form class="shopping-cart-form" method="POST" action="{{ route('add-to-cart') }}">
+                                @csrf
+                                <div class="wsus__selectbox">
                                     <div class="row">
                                         <input type="hidden" name="product_id" value="{{ $product->id }}">
-                                        @foreach ($product->variants as $variant)
+                                        @foreach ($product->productVariants as $variant)
                                             @if ($variant->status != 0)
                                                 <div class="col-xl-6 col-sm-6">
                                                     <h5 class="mb-2">{{ $variant->name }}: </h5>
@@ -114,7 +116,7 @@
                                         @endforeach
 
                                     </div>
-                                </div> --}}
+                                </div>
 
                                 <div class="wsus__quentity">
                                     <h5>quentity :</h5>
@@ -129,9 +131,8 @@
                                         padding: 7px 11px;
                                         border-radius: 100%;"
                                             href="javascript:;" class="add_to_wishlist" data-id="{{ $product->id }}"><i
-                                                class="fal fa-heart"></i>
-                                        </a>
-                                    </li>
+                                                class="fal fa-heart"></i></a></li>
+
                                     <li>
                                         <button type="button"
                                             style="border: 1px solid gray;
@@ -141,7 +142,6 @@
                                             class="btn" data-bs-toggle="modal" data-bs-target="#exampleModal">
                                             <i class="far fa-comment-alt text-light"></i>
                                         </button>
-
                                     </li>
                                 </ul>
                             </form>
@@ -204,9 +204,9 @@
                                                     <p class="rating">
 
                                                         @for ($i = 1; $i <= 5; $i++)
-                                                            <i class="far fa-star"></i>
+                                                            <i class="fas fa-star"></i>
                                                         @endfor
-                                                        <span>(review)</span>
+                                                        <span>review</span>
                                                     </p>
                                                     <p><span>Store Name:</span> {{ $product->vendor->shop_name }}</p>
                                                     <p><span>Address:</span> {{ $product->vendor->address }}</p>
@@ -230,6 +230,40 @@
                                             <div class="row">
                                                 <div class="col-xl-8 col-lg-7">
                                                     <div class="wsus__comment_area">
+                                                        <h4>Reviews</span></h4>
+                                                        {{-- @foreach ($reviews as $review)
+                                                            <div class="wsus__main_comment">
+                                                                <div class="wsus__comment_img">
+                                                                    <img src="{{ asset($review->user->image) }}"
+                                                                        alt="user" class="img-fluid w-100">
+                                                                </div>
+                                                                <div class="wsus__comment_text reply">
+                                                                    <h6>{{ $review->user->name }}
+                                                                        <span>{{ $review->rating }} <i
+                                                                                class="fas fa-star"></i></span>
+                                                                    </h6>
+                                                                    <span>{{ date('d M Y', strtotime($review->created_at)) }}</span>
+                                                                    <p>{{ $review->review }}
+                                                                    </p>
+                                                                    <ul class="">
+                                                                        @if (count($review->productReviewGalleries) > 0)
+                                                                            @foreach ($review->productReviewGalleries as $image)
+                                                                                <li><img src="{{ asset($image->image) }}"
+                                                                                        alt="product" class="img-fluid ">
+                                                                                </li>
+                                                                            @endforeach
+                                                                        @endif
+
+                                                                    </ul>
+                                                                </div>
+                                                            </div>
+                                                        @endforeach --}}
+
+                                                        <div class="mt-5">
+                                                            {{-- @if ($reviews->hasPages())
+                                                                {{ $reviews->links() }}
+                                                            @endif --}}
+                                                        </div>
                                                     </div>
                                                 </div>
                                                 <div class="col-xl-4 col-lg-5 mt-4 mt-lg-0">

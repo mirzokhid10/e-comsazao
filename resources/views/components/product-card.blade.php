@@ -1,4 +1,4 @@
-<div class="col-xl-3 col-sm-6 col-lg-4">
+<div class="col-xl-3 col-sm-6 col-lg-4 {{ @$key }}">
     <div class="wsus__product_item">
         <span class="wsus__new">{{ productType($product->product_type) }}</span>
         @if (checkDiscount($product))
@@ -22,10 +22,7 @@
         </ul>
         <div class="wsus__product_details">
             <a class="wsus__category" href="#">{{ $product->category->name }} </a>
-
             <p class="wsus__pro_rating">
-
-
                 @for ($i = 1; $i <= 5; $i++)
                     @if ($i <= $product->reviews_avg_rating)
                         <i class="fas fa-star"></i>
@@ -33,11 +30,10 @@
                         <i class="far fa-star"></i>
                     @endif
                 @endfor
-
                 <span>({{ $product->reviews_count }} review)</span>
             </p>
-            <a class="wsus__pro_name" href="{{ $product->slug }}">{{ limitText($product->name, 52) }}</a>
-            {{-- route('product-detail', --}}
+            <a class="wsus__pro_name"
+                href="{{ route('product-detail', $product->slug) }}">{{ limitText($product->name, 52) }}</a>
             @if (checkDiscount($product))
                 <p class="wsus__price">{{ $settings->currency_icon }}{{ $product->offer_price }}
                     <del>{{ $settings->currency_icon }}{{ $product->price }}</del>
@@ -45,9 +41,11 @@
             @else
                 <p class="wsus__price">{{ $settings->currency_icon }}{{ $product->price }}</p>
             @endif
-            <form class="shopping-cart-form">
+            <form class="shopping-cart-form" method="POST" action="{{ route('add-to-cart') }}">
+                @csrf
                 <input type="hidden" name="product_id" value="{{ $product->id }}">
-                @foreach ($product->variants as $variant)
+                <input type="hidden" name="qty" value="1">
+                @foreach ($product->productVariants as $variant)
                     @if ($variant->status != 0)
                         <select class="d-none" name="variants_items[]">
                             @foreach ($variant->productVariantItems as $variantItem)

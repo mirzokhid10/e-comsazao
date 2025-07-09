@@ -215,7 +215,8 @@
                      </ul>
 
                      <ul class="wsus__menu_item">
-                         <li><a class="active" href="{{ route('user.dashboard') }}">home</a></li>
+                         <li><a class="active" href="{{ auth()->check() ? route('user.dashboard') : '/' }}">home</a>
+                         </li>
                          <li><a href="product_grid_view.html">shop <i class="fas fa-caret-down"></i></a>
                              <div class="wsus__mega_menu">
                                  <div class="row">

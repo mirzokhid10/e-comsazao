@@ -71,7 +71,8 @@
                 <div class="wsus__product_item">
                     <a class="wsus__pro_link" href="product_details.html">
                         <img src="images/tab_1.jpg" alt="product" class="img-fluid w-100 img_1" />
-                        <img src="images/tab_2.jpg" alt="product" class="img-fluid w-100 img_2" />
+                        <img src="{{ asset('frontend/images/tab_2.jpg') }}" alt="product"
+                            class="img-fluid w-100 img_2" />
                     </a>
                     <ul class="wsus__single_pro_icon">
                         <li><a href="#" data-bs-toggle="modal" data-bs-target="#exampleModal"><i

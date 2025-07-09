@@ -9,7 +9,8 @@
                     <div class="col-xl-4 col-lg-4">
                         <a class="wsus__hot_deals__single" href="#">
                             <div class="wsus__hot_deals__single_img">
-                                <img src="images/pro9.jpg" alt="bag" class="img-fluid w-100">
+                                <img src="{{ asset('frontend/images/pro9.jpg') }}" alt="bag"
+                                    class="img-fluid w-100">
                             </div>
                             <div class="wsus__hot_deals__single_text">
                                 <h5>men's sholder bag</h5>
@@ -124,7 +125,8 @@
                     <div class="col-xl-4 col-lg-4">
                         <a class="wsus__hot_deals__single" href="#">
                             <div class="wsus__hot_deals__single_img">
-                                <img src="images/pro9.jpg" alt="bag" class="img-fluid w-100">
+                                <img src="{{ asset('frontend/images/pro9.jpg') }}" alt="bag"
+                                    class="img-fluid w-100">
                             </div>
                             <div class="wsus__hot_deals__single_text">
                                 <h5>men's sholder bag</h5>
