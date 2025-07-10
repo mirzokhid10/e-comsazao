@@ -76,9 +76,7 @@
              </h5>
              <div class="wsus__minicart_btn_area">
                  <a class="common_btn" href="{{ route('cart-details') }}">view cart</a>
-                 {{--  --}}
-                 <a class="common_btn" href="">checkout</a>
-                 {{-- {{ route('user.checkout') }} --}}
+                  <a class="common_btn" href="{{ route('user.checkout') }}">checkout</a>
              </div>
          </div>
      </div>

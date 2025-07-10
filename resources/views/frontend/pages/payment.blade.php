@@ -58,8 +58,6 @@
                                 <button class="nav-link common_btn" id="v-pills-profile-tab" data-bs-toggle="pill"
                                     data-bs-target="#v-pills-cod" type="button" role="tab"
                                     aria-controls="v-pills-stripe" aria-selected="false">COD</button>
-
-
                             </div>
                         </div>
                     </div>
@@ -79,9 +77,9 @@
                                 </div>
                             </div>
 
-                            {{-- @include('frontend.pages.payment-gateway.stripe')
+                            @include('frontend.pages.payment-gateway.stripe')
 
-                            @include('frontend.pages.payment-gateway.razorpay')
+                            {{-- @include('frontend.pages.payment-gateway.razorpay')
 
                             @include('frontend.pages.payment-gateway.cod') --}}
 

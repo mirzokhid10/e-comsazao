@@ -8,12 +8,15 @@ use App\Models\Order;
 use App\Models\OrderProduct;
 use App\Models\Product;
 use App\Models\Transaction;
+use App\Models\StripeSetting;
 use App\Http\Controllers\Controller;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Session;
 use Illuminate\Support\Facades\Auth;
 use Srmklive\PayPal\Services\PayPal as PayPalClient;
 use Gloudemans\Shoppingcart\Facades\Cart;
+use Stripe\Charge;
+use Stripe\Stripe;
 
 class PaymentController extends Controller
 {
@@ -63,7 +66,7 @@ class PaymentController extends Controller
             $orderProduct->variant_total = $item->options->variants_total;
             $orderProduct->unit_price = $item->price;
             $orderProduct->qty = $item->qty;
-            $orderProduct->save();
+            $orderProduct->save(); 
 
             // update product quantity
             $updatedQty = ($product->qty - $item->qty);
@@ -191,5 +194,34 @@ class PaymentController extends Controller
     {
         notify()->error('Someting went wrong try agin later!');
         return redirect()->route('user.payment');
+    }
+
+    ///////////////////////////////////////////
+    ////    Pay With Stripe Function 
+    ///////////////////////////////////////////
+
+    public function payWithStripe(Request $request)
+    {
+        // calculate payable amount depending on currency rate
+        $stripeSetting = StripeSetting::first();
+        $total = getFinalPayableAmount();
+        $payableAmount = round($total * $stripeSetting->currency_rate, 2);
+        Stripe::setApiKey($stripeSetting->secret_key);
+        $response = Charge::create([
+            "amount" => $payableAmount * 100,
+            "currency" => $stripeSetting->currency_name,
+            "source" => $request->stripe_token,
+            "description" => "product purchase!"
+        ]);
+
+        if ($response->status === 'succeeded') {
+            $this->storeOrder('stripe', 1, $response->id, $payableAmount, $stripeSetting->currency_name);
+            // clear session
+            $this->clearSession();
+            return redirect()->route('user.payment.success');
+        } else {
+            notify()->error('Someting went wrong try agin later!');
+            return redirect()->route('user.payment');
+        }
     }
 }

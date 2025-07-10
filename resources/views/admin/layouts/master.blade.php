@@ -124,11 +124,11 @@
     </script>
     <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
 
-    <script>
+    {{-- <script>
         $(docement).ready(function(){
             $('.select2').select2();
         })
-    </script>
+    </script> --}}
 
     @stack('scripts')
 </body>
