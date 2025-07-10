@@ -88,7 +88,9 @@
                      <li><a class="{{ setActive(['admin.coupon.*']) }}"
                              href="{{ route('admin.coupon.index') }}">Coupons Managment</a></li>
                      <li><a class="{{ setActive(['admin.shipping-rule.*']) }}"
-                             href="{{ route('admin.shipping-rule.index') }}">Shipping Rules Managment</a></li>
+                             href="{{ route('admin.shipping-rule.index') }}">Shipping Managment</a></li>
+                     <li><a class="{{ setActive(['admin.payment-settings.*']) }}"
+                             href="{{ route('admin.payment-settings.index') }}">Payment Managment</a></li>
                  </ul>
              </li>
          </ul>

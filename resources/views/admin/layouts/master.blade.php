@@ -123,6 +123,13 @@
     <script src="https://cdnjs.cloudflare.com/ajax/libs/bootstrap-iconpicker/1.10.0/js/bootstrap-iconpicker.min.js">
     </script>
     <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
+
+    <script>
+        $(docement).ready(function(){
+            $('.select2').select2();
+        })
+    </script>
+
     @stack('scripts')
 </body>
 

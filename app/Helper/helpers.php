@@ -3,6 +3,8 @@
 use App\Models\GeneralSetting;
 use Gloudemans\Shoppingcart\Cart;
 use Illuminate\Support\Facades\Session;
+use Illuminate\Support\Str;
+
 
 /** Set Sidebar item active */
 

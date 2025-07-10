@@ -1,7 +1,7 @@
 <?php
 
 use App\Http\Controllers\Backend\AdminController;
-use App\Http\Controllers\Backend\PaymentController;
+use App\Http\Controllers\Frontend\PaymentController;
 use App\Http\Controllers\Frontend\CheckOutController;
 use App\Http\Controllers\Frontend\CartController;
 use App\Http\Controllers\Frontend\FlashSaleController;
@@ -83,4 +83,12 @@ Route::group(['middleware' => ['auth', 'verified'], 'prefix' => 'user', 'as' => 
 
     Route::get('payment', [PaymentController::class, 'index'])->name('payment');
     Route::get('payment-success', [PaymentController::class, 'paymentSuccess'])->name('payment.success');
+
+    ///////////////////////////////////////////
+    ////    Paypal Routes Controller Routes
+    ///////////////////////////////////////////
+
+    Route::get('paypal/payment', [PaymentController::class, 'payWithPaypal'])->name('paypal.payment');
+    Route::get('paypal/success', [PaymentController::class, 'paypalSuccess'])->name('paypal.success');
+    Route::get('paypal/cancel', [PaymentController::class, 'paypalCancel'])->name('paypal.cancel');
 });
