@@ -138,9 +138,9 @@ function limitText($text, $limit = 20)
     return \Str::limit($text, $limit);
 }
 
-// function getCurrencyIcon()
-// {
-//     $icon = GeneralSetting::first();
+function getCurrencyIcon()
+{
+    $icon = GeneralSetting::first();
 
-//     return $icon->currency_icon;
-// }
+    return $icon->currency_icon;
+}

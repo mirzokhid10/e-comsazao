@@ -116,7 +116,8 @@
                             <input type="hidden" name="shipping_address_id" value="" id="shipping_address_id">
 
                         </form>
-                        <a href="" id="submitCheckoutForm" class="common_btn">Place Order</a>
+                        <!-- <a href="" id="submitCheckoutForm" class="common_btn">Place Order</a> -->
+                        <button type="button" id="submitCheckoutForm" class="common_btn">Place Order</button>
                     </div>
                 </div>
             </div>
@@ -256,20 +257,52 @@
                         method: 'POST',
                         data: $('#checkOutForm').serialize(),
                         beforeSend: function() {
-                            $('#submitCheckoutForm').html(
-                                '<i class="fas fa-spinner fa-spin fa-1x"></i>')
+                            $('#submitCheckoutForm').html('<i class="fas fa-spinner fa-spin fa-1x"></i>')
                         },
                         success: function(data) {
                             if (data.status === 'success') {
-                                $('#submitCheckoutForm').text('Place Order')
-                                // redirect user to next page
+                                $('#submitCheckoutForm').text('Place Order');
                                 window.location.href = data.redirect_url;
                             }
                         },
-                        error: function(data) {
-                            console.log(data);
+                        error: function(xhr, status, error) {
+                            console.log("AJAX error response:", xhr);
+                            console.log("Form data sent:", $('#checkOutForm').serialize());
+
+                            if (xhr.responseJSON && xhr.responseJSON.message) {
+                                toastr.error(xhr.responseJSON.message);
+                            } else {
+                                toastr.error("Something went wrong. Check Laravel logs.");
+                            }
                         }
-                    })
+                    });
+
+                    // $.ajax({
+                    //     url: "{{ route('user.checkout.form-submit') }}",
+                    //     method: 'POST',
+                    //     data: $('#checkOutForm').serialize(),
+                    //     beforeSend: function() {
+                    //         $('#submitCheckoutForm').html(
+                    //             '<i class="fas fa-spinner fa-spin fa-1x"></i>')
+                    //     },
+                    //     success: function(data) {
+                    //         if (data.status === 'success') {
+                    //             $('#submitCheckoutForm').text('Place Order')
+                    //             // redirect user to next page
+                    //             window.location.href = data.redirect_url;
+                    //         }
+                    //     },
+                    //     error: function(data) {
+                    //         console.log("AJAX error:", xhr); // ✅ now it's defined
+                    //         console.log("Form data sent:", $('#checkOutForm').serialize());
+
+                    //         if (xhr.responseJSON && xhr.responseJSON.message) {
+                    //             toastr.error(xhr.responseJSON.message);
+                    //         } else {
+                    //             toastr.error("Something went wrong. Check console or Laravel logs.");
+                    //         }
+                    //     }
+                    // })
                 }
             })
         })

@@ -7,6 +7,7 @@ use App\Models\UserAddress;
 use App\Models\ShippingRule;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
+use Illuminate\Support\Facades\Session;
 
 class CheckOutController extends Controller
 {
@@ -51,27 +52,29 @@ class CheckOutController extends Controller
         return redirect()->back();
     }
 
-    // public function checkOutFormSubmit(Request $request)
-    // {
-    //     $request->validate([
-    //         'shipping_method_id' => ['required', 'integer'],
-    //         'shipping_address_id' => ['required', 'integer'],
-    //     ]);
+    public function checkOutFormSubmit(Request $request)
+    {
+        
+        $request->validate([
+            'shipping_method_id' => ['required', 'integer'],
+            'shipping_address_id' => ['required', 'integer'],
+        ]);
 
-    //     $shippingMethod = ShippingRule::findOrFail($request->shipping_method_id);
-    //     if ($shippingMethod) {
-    //         Session::put('shipping_method', [
-    //             'id' => $shippingMethod->id,
-    //             'name' => $shippingMethod->name,
-    //             'type' => $shippingMethod->type,
-    //             'cost' => $shippingMethod->cost
-    //         ]);
-    //     }
-    //     $address = UserAddress::findOrFail($request->shipping_address_id)->toArray();
-    //     if ($address) {
-    //         Session::put('address', $address);
-    //     }
+        $shippingMethod = ShippingRule::findOrFail($request->shipping_method_id);
+        if ($shippingMethod) {
+            Session::put('shipping_method', [
+                'id' => $shippingMethod->id,
+                'name' => $shippingMethod->name,
+                'type' => $shippingMethod->type,
+                'cost' => $shippingMethod->cost
+            ]);
+        }
+        
+        $address = UserAddress::findOrFail($request->shipping_address_id)->toArray();
+        if ($address) {
+            Session::put('address', $address);
+        }
 
-    //     return response(['status' => 'success', 'redirect_url' => route('user.payment')]);
-    // }
+        return response(['status' => 'success', 'redirect_url' => route('user.payment')]);
+    }
 }

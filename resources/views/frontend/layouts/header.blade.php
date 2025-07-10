@@ -29,7 +29,7 @@
                          </div>
                          <div class="wsus__call_text">
                              <p>example@gmail.com</p>
-                             <p>+569875544220</p>
+                             <p>+5698755442200</p>
                          </div>
                      </div>
                      <ul class="wsus__icon_area">
