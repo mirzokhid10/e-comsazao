@@ -59,3 +59,12 @@ Route::get('products-variant-item-edit/{productVariantId}', [VendorProductVarian
 Route::put('products-variant-item-update/{productVariantId}', [VendorProductVariantItemController::class, 'update'])->name('products-variant-item.update');
 Route::delete('products-variant-item/{productVariantId}', [VendorProductVariantItemController::class, 'destroy'])->name('products-variant-item.destroy');
 Route::put('products-variant-item-status', [VendorProductVariantItemController::class, 'changeStatus'])->name('products-variant-item.change-status');
+
+///////////////////////////////////////////
+////	Vendor Orders Controller Route
+///////////////////////////////////////////
+
+Route::get('orders', [VendorOrderController::class, 'index'])->name('orders.index');
+Route::get('orders/show/{id}', [VendorOrderController::class, 'show'])->name('orders.show');
+Route::get('orders/status/{id}', [VendorOrderController::class, 'orderStatus'])->name('orders.status');
+
