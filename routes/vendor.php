@@ -7,6 +7,7 @@ use App\Http\Controllers\Backend\VendorProfileController;
 use App\Http\Controllers\Backend\VendorShopProfileController;
 use App\Http\Controllers\Backend\VendorProductVariantController;
 use App\Http\Controllers\Backend\VendorProductVariantItemController;
+use App\Http\Controllers\Backend\VendorOrderController;
 use Illuminate\Support\Facades\Route;
 
 Route::get('dashboard', [VendorController::class, 'dashboard'])->name('dashboard');
