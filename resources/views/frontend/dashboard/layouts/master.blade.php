@@ -9,7 +9,7 @@
     <title>
         @yield('title')
     </title>
-    <link rel="icon" type="image/png" href="images/favicon.png">
+    <link rel="icon" type="image/png" href="{{ asset('frontend/images/favicon.png') }}">
     <link rel="stylesheet" href="{{ asset('frontend/css/all.min.css') }}">
     <link rel="stylesheet" href="{{ asset('frontend/css/bootstrap.min.css') }}">
     <link rel="stylesheet" href="{{ asset('frontend/css/select2.min.css') }}">
@@ -25,6 +25,8 @@
     <link rel="stylesheet" href="{{ asset('frontend/css/venobox.min.css') }}">
     <link rel="stylesheet" href="{{ asset('frontend/css/style.css') }}">
     <link rel="stylesheet" href="{{ asset('frontend/css/responsive.css') }}">
+    {{-- Yajra Datatables CSS --}}
+    <link rel="stylesheet" href="//cdn.datatables.net/2.3.2/css/dataTables.dataTables.min.css">
     <!-- <link rel="stylesheet" href="css/rtl.css"> -->
     {{-- Notify Laravel CSS --}}
     @notifyCss
@@ -89,10 +91,13 @@
     <script src="{{ asset('frontend/js/venobox.min.js') }}"></script>
     <script src="{{ asset('frontend/js/jquery.classycountdown.js') }}"></script>
     <script src="{{ asset('frontend/js/main.js') }}"></script>
+    {{-- Yajra Datatables JS --}}
+    <script src="https://cdn.datatables.net/2.3.2/js/dataTables.js"></script>
 
     {{-- Notify Laravel JS --}}
     <x-notify::notify />
     @notifyJs
+    @stack('scripts')
 </body>
 
 </html>

@@ -106,6 +106,6 @@ Route::group(['middleware' => ['auth', 'verified'], 'prefix' => 'user', 'as' => 
     ////    User Order Controller Routes
     ///////////////////////////////////////////
 
-    Route::get('orders', [UserOrderController::class, 'index'])->name('orders.index');
-    Route::get('orders/show/{id}', [UserOrderController::class, 'show'])->name('orders.show');
+    Route::get('order', [UserOrderController::class, 'index'])->name('orders.index');
+    Route::get('order/show/{id}', [UserOrderController::class, 'show'])->name('orders.show');
 });
