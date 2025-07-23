@@ -33,17 +33,17 @@ class HomeController extends Controller
         $categoryProductSliderSectionThree = HomePageSetting::where('key', 'product_slider_section_three')->first();
         $brands = Brand::where('status', 1)->where('is_featured', 1)->get();
 
-        $homepage_secion_banner_one = Advertisement::where('key', 'homepage_secion_banner_one')->first();
-        $homepage_secion_banner_one = json_decode($homepage_secion_banner_one?->value);
+        $homepage_section_banner_one = Advertisement::where('key', 'homepage_section_banner_one')->first();
+        $homepage_section_banner_one = json_decode($homepage_section_banner_one?->value);
 
-        $homepage_secion_banner_two = Advertisement::where('key', 'homepage_secion_banner_two')->first();
-        $homepage_secion_banner_two = json_decode($homepage_secion_banner_two?->value);
+        $homepage_section_banner_two = Advertisement::where('key', 'homepage_section_banner_two')->first();
+        $homepage_section_banner_two = json_decode($homepage_section_banner_two?->value);
 
-        $homepage_secion_banner_three = Advertisement::where('key', 'homepage_secion_banner_three')->first();
-        $homepage_secion_banner_three = json_decode($homepage_secion_banner_three?->value);
+        $homepage_section_banner_three = Advertisement::where('key', 'homepage_section_banner_three')->first();
+        $homepage_section_banner_three = json_decode($homepage_section_banner_three?->value);
 
-        $homepage_secion_banner_four = Advertisement::where('key', 'homepage_secion_banner_four')->first();
-        $homepage_secion_banner_four = json_decode($homepage_secion_banner_four?->value);
+        $homepage_section_banner_four = Advertisement::where('key', 'homepage_section_banner_four')->first();
+        $homepage_section_banner_four = json_decode($homepage_section_banner_four?->value);
 
         return view(
             'frontend.home.home',
@@ -57,10 +57,10 @@ class HomeController extends Controller
                 'categoryProductSliderSectionTwo',
                 'categoryProductSliderSectionThree',
                 'brands',
-                'homepage_secion_banner_one',
-                'homepage_secion_banner_two',
-                'homepage_secion_banner_three',
-                'homepage_secion_banner_four'
+                'homepage_section_banner_one',
+                'homepage_section_banner_two',
+                'homepage_section_banner_three',
+                'homepage_section_banner_four'
             )
         );
     }

@@ -21,17 +21,7 @@
                          getCartCount()
                          fetchSidebarCartProducts()
                          $('.mini_cart_actions').removeClass('d-none');
-                         Swal.fire({
-                             icon: 'success',
-                             title: 'Success!',
-                             text: data.message || 'Status changed successfully.',
-                             confirmButtonText: 'OK',
-                             customClass: {
-                                 confirmButton: 'swal-custom-confirm'
-                             },
-                             buttonsStyling: false // this disables the default SweetAlert styles
-
-                         });
+                         toastr.success(data.message);
                      } else if (data.status === "error") {
                          console.log(data.message);
                      }

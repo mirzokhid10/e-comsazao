@@ -40,8 +40,10 @@
                              </a>
                          </li>
                          <li><a href="compare.html"><i class="fal fa-random"></i><span>03</span></a></li>
-                         <li><a class="wsus__cart_icon" href="#"><i
-                                     class="fal fa-shopping-bag"></i><span>{{ Cart::content()->count() }}</span></a>
+                         <li><a class="wsus__cart_icon" href="#">
+                                 <i class="fal fa-shopping-bag"></i><span
+                                     id="cart-count">{{ Cart::content()->count() }}</span>
+                             </a>
                          </li>
                      </ul>
                  </div>

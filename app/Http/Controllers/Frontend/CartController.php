@@ -42,14 +42,14 @@ class CartController extends Controller
             return response(['status' => 'error', 'message' => 'Quantity not available in our stock']);
         }
 
-        $productVariants = [];
+        $variants = [];
         $variantTotalAmount = 0;
 
         if ($request->has('variants_items')) {
             foreach ($request->variants_items as $item_id) {
                 $variantItem = ProductVariantItem::find($item_id);
-                $productVariants[$variantItem->productVariant->name]['name'] = $variantItem->name;
-                $productVariants[$variantItem->productVariant->name]['price'] = $variantItem->price;
+                $variants[$variantItem->productVariant->name]['name'] = $variantItem->name;
+                $variants[$variantItem->productVariant->name]['price'] = $variantItem->price;
                 $variantTotalAmount += $variantItem->price;
             }
         }
@@ -64,9 +64,9 @@ class CartController extends Controller
         }
 
         // Check if this product+variant combo already exists in the cart
-        $exists = Cart::content()->first(function ($cartItem) use ($product, $productVariants) {
+        $exists = Cart::content()->first(function ($cartItem) use ($product, $variants) {
             return $cartItem->id == $product->id &&
-                $cartItem->options['variants'] == $productVariants;
+                $cartItem->options['variants'] == $variants;
         });
 
         if ($exists) {
@@ -80,18 +80,16 @@ class CartController extends Controller
         $cartData['qty'] = $request->qty;
         $cartData['price'] = $productPrice;
         $cartData['weight'] = 10;
-        $cartData['options']['variants'] = $productVariants;
+        $cartData['options']['variants'] = $variants;
         $cartData['options']['variants_total'] = $variantTotalAmount;
         $cartData['options']['image'] = $product->thumb_image;
         $cartData['options']['slug'] = $product->slug;
 
         Cart::add($cartData);
 
-        // return response(['status' => 'success', 'message' => 'Added to cart successfully!']);
-
-        notify()->success('Added to cart successfully!');
-        return redirect()->back();
+        return response()->json(['status' => 'success', 'message' => 'Added to cart successfully!']);
     }
+
 
     /** Update product quantity */
     public function updateProductQty(Request $request)

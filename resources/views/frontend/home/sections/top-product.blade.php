@@ -94,11 +94,11 @@
     <div class="container">
         <div class="row">
             <div class="col-xl-12 col-lg-12">
-                @if ($homepage_secion_banner_one->banner_one->status == 1)
+                @if ($homepage_section_banner_one->banner_one->status == 1)
                     <div class="wsus__monthly_top_banner">
-                        <a href="{{ $homepage_secion_banner_one->banner_one->banner_url }}">
+                        <a href="{{ $homepage_section_banner_one->banner_one->banner_url }}">
                             <img class="img-fluid"
-                                src="{{ asset($homepage_secion_banner_one->banner_one->banner_image) }}" alt="">
+                                src="{{ asset($homepage_section_banner_one->banner_one->banner_image) }}" alt="">
                         </a>
                     </div>
                 @endif
