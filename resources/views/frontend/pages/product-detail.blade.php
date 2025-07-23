@@ -245,34 +245,39 @@
                                             <div class="row">
                                                 <div class="col-xl-8 col-lg-7">
                                                     <div class="wsus__comment_area">
-                                                        <h4>Reviews</span></h4>
-                                                        @foreach ($reviews as $review)
+
+                                                        <h4>Customer Reviews</span></h4>
+                                                        @forelse ($reviews as $review)
                                                             <div class="wsus__main_comment">
                                                                 <div class="wsus__comment_img">
-                                                                    <img src="{{ asset($review->user->image) }}"
+                                                                    <img src="{{ $review->user->image ? asset($review->user->image) : asset('default-user.png') }}"
                                                                         alt="user" class="img-fluid w-100">
                                                                 </div>
                                                                 <div class="wsus__comment_text reply">
-                                                                    <h6>{{ $review->user->name }}
-                                                                        <span>{{ $review->rating }} <i
-                                                                                class="fas fa-star"></i></span>
+                                                                    <h6>
+                                                                        {{ $review->user->name }}
+                                                                        <span>
+                                                                            {{ $review->rating }} <i
+                                                                                class="fas fa-star"></i>
+                                                                        </span>
                                                                     </h6>
-                                                                    <span>{{ date('d M Y', strtotime($review->created_at)) }}</span>
-                                                                    <p>{{ $review->review }}
-                                                                    </p>
-                                                                    <ul class="">
-                                                                        @if (count($review->productReviewGalleries) > 0)
+                                                                    <span>{{ $review->created_at->format('d M Y') }}</span>
+                                                                    <p>{{ $review->review }}</p>
+                                                                    @if ($review->productReviewGalleries && count($review->productReviewGalleries) > 0)
+                                                                        <ul>
                                                                             @foreach ($review->productReviewGalleries as $image)
-                                                                                <li><img src="{{ asset($image->image) }}"
-                                                                                        alt="product" class="img-fluid ">
+                                                                                <li>
+                                                                                    <img src="{{ asset($image->image) }}"
+                                                                                        alt="product" class="img-fluid">
                                                                                 </li>
                                                                             @endforeach
-                                                                        @endif
-
-                                                                    </ul>
+                                                                        </ul>
+                                                                    @endif
                                                                 </div>
                                                             </div>
-                                                        @endforeach
+                                                        @empty
+                                                            <p>No reviews yet. Be the first to review this product!</p>
+                                                        @endforelse
 
                                                         <div class="mt-5">
                                                             @if ($reviews->hasPages())
@@ -282,77 +287,56 @@
                                                     </div>
                                                 </div>
                                                 <div class="col-xl-4 col-lg-5 mt-4 mt-lg-0">
+                                                    {{-- New Form Of Review Form For Users Start Here --}}
                                                     @auth
-                                                        @php
-                                                            $isBrought = false;
-                                                            $orders = \App\Models\Order::where([
-                                                                'user_id' => auth()->user()->id,
-                                                                'order_status' => 'delivered',
-                                                            ])->get();
-                                                            foreach ($orders as $key => $order) {
-                                                                $existItem = $order
-                                                                    ->orderProducts()
-                                                                    ->where('product_id', $product->id)
-                                                                    ->first();
-
-                                                                if ($existItem) {
-                                                                    $isBrought = true;
-                                                                }
-                                                            }
-
-                                                        @endphp
-
-                                                        @if ($isBrought === true)
-                                                            <div class="wsus__post_comment rev_mar" id="sticky_sidebar3">
-                                                                <h4>write a Review</h4>
-                                                                <form action="{{ route('user.review.create') }}"
-                                                                    enctype="multipart/form-data" method="POST">
-                                                                    @csrf
-                                                                    <p class="rating">
-                                                                        <span>select your rating : </span>
-                                                                    </p>
-
-                                                                    <div class="row">
-
-                                                                        <div class="col-xl-12 mb-4">
-                                                                            <div class="wsus__single_com">
-                                                                                <select name="rating" id=""
-                                                                                    class="form-control">
-                                                                                    <option value="">Select</option>
-                                                                                    <option value="1">1</option>
-                                                                                    <option value="2">2</option>
-                                                                                    <option value="3">3</option>
-                                                                                    <option value="4">4</option>
-                                                                                    <option value="5">5</option>
-                                                                                </select>
-                                                                            </div>
-                                                                        </div>
-
-                                                                        <div class="col-xl-12">
-                                                                            <div class="col-xl-12">
-                                                                                <div class="wsus__single_com">
-                                                                                    <textarea cols="3" rows="3" name="review" placeholder="Write your review"></textarea>
-                                                                                </div>
-                                                                            </div>
+                                                        <div class="wsus__post_comment rev_mar m-0" id="sticky_sidebar3">
+                                                            <h4>Write a Review</h4>
+                                                            <form action="{{ route('user.reviews.create') }}"
+                                                                enctype="multipart/form-data" method="POST">
+                                                                @csrf
+                                                                <p class="rating">
+                                                                    <span>Select your rating: </span>
+                                                                </p>
+                                                                <div class="row">
+                                                                    <div class="col-xl-12 mb-4">
+                                                                        <div class="wsus__single_com">
+                                                                            <select name="rating" class="form-control">
+                                                                                <option value="">Select</option>
+                                                                                <option value="1">1</option>
+                                                                                <option value="2">2</option>
+                                                                                <option value="3">3</option>
+                                                                                <option value="4">4</option>
+                                                                                <option value="5">5</option>
+                                                                            </select>
                                                                         </div>
                                                                     </div>
-                                                                    <div class="img_upload">
-                                                                        <div class="">
-                                                                            <input type="file" name="images[]" multiple>
+                                                                    <div class="col-xl-12">
+                                                                        <div class="wsus__single_com">
+                                                                            <textarea cols="3" rows="3" name="review" placeholder="Write your review"></textarea>
                                                                         </div>
                                                                     </div>
-                                                                    <input type="hidden" name="product_id" id=""
-                                                                        value="{{ $product->id }}">
-                                                                    <input type="hidden" name="vendor_id" id=""
-                                                                        value="{{ $product->vendor_id }}">
+                                                                </div>
+                                                                <div class="img_upload">
+                                                                    <input type="file" name="images[]" multiple>
+                                                                </div>
+                                                                <input type="hidden" name="product_id"
+                                                                    value="{{ $product->id }}">
+                                                                <input type="hidden" name="vendor_id"
+                                                                    value="{{ $product->vendor_id }}">
 
-                                                                    <button class="common_btn" type="submit">submit
-                                                                        review</button>
-                                                                </form>
-                                                            </div>
-                                                        @endif
+                                                                <button class="common_btn" type="submit">Submit
+                                                                    Review</button>
+                                                            </form>
+
+                                                        </div>
                                                     @endauth
-
+                                                    {{-- New Form Of Review Form For Users End Here --}}
+                                                    @guest
+                                                        <div class="alert alert-warning mt-3">
+                                                            Please <a href="{{ route('login') }}">log in</a> to leave a
+                                                            review.
+                                                        </div>
+                                                    @endguest
                                                 </div>
                                             </div>
                                         </div>
@@ -375,7 +359,8 @@
         <div class="modal-dialog">
             <div class="modal-content">
                 <div class="modal-header">
-                    <h5 class="modal-title" id="exampleModalLabel">Send Message</h5>
+                    <h5 class="modal-title" id="exampleModalLabel">Send
+                        Message</h5>
                     <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
                 </div>
                 <div class="modal-body">

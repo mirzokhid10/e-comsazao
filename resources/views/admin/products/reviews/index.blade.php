@@ -32,6 +32,11 @@
     {{ $dataTable->scripts(attributes: ['type' => 'module']) }}
 
     <script>
+        $.ajaxSetup({
+            headers: {
+                'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content')
+            }
+        });
         $(document).ready(function() {
             $('body').on('click', '.change-status', function() {
                 let isChecked = $(this).is(':checked');

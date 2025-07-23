@@ -21,6 +21,21 @@ class ReviewController extends Controller
 
     public function create(Request $request)
     {
+        $user = Auth::user();
+        $productId = $request->input('product_id');
+
+        // Check if user has a delivered order for this product
+        $hasBought = \App\Models\Order::where([
+            'user_id' => $user->id,
+            'order_status' => 'delivered',
+        ])->whereHas('orderProducts', function ($q) use ($productId) {
+            $q->where('product_id', $productId);
+        })->exists();
+
+        if (!$hasBought) {
+            notify()->error('Only customers who have purchased this product can leave a review.');
+            return redirect()->back();
+        }
 
         $request->validate([
             'rating' => ['required'],

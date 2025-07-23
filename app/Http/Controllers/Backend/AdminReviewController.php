@@ -20,7 +20,8 @@ class AdminReviewController extends Controller
         $review->status = $request->status == 'true' ? 1 : 0;
         $review->save();
 
-        notify()->success('Status Has Been Changed Successfully');
-        return redirect()->back();
+        // notify()->success('Status Has Been Changed Successfully');
+        // return redirect()->back();
+        return response()->json(['message' => 'Review Status Changed Successfully!']);
     }
 }
