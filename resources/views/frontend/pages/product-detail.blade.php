@@ -83,12 +83,18 @@
                                 <h4>{{ $settings->currency_icon }}{{ $product->price }}</h4>
                             @endif
                             <p class="wsus__pro_rating">
+                                @php
+                                    $avgRating = $product->reviews()->avg('rating');
+                                    $fullRating = round($avgRating);
+                                @endphp
 
                                 @for ($i = 1; $i <= 5; $i++)
-                                    <i class="far fa-star"></i>
+                                    @if ($i <= $fullRating)
+                                        <i class="fas fa-star"></i>
+                                    @else
+                                        <i class="far fa-star"></i>
+                                    @endif
                                 @endfor
-
-                                <span>review</span>
                             </p>
                             <p class="description">{!! $product->short_description !!}</p>
 
@@ -101,7 +107,7 @@
                                             @if ($variant->status != 0)
                                                 <div class="col-xl-6 col-sm-6">
                                                     <h5 class="mb-2">{{ $variant->name }}: </h5>
-                                                    <select class="select_2" name="variants_items[]">
+                                                    <select class="select_2" name="productVariants_items[]">
                                                         @foreach ($variant->productVariantItems as $variantItem)
                                                             @if ($variantItem->status != 0)
                                                                 <option value="{{ $variantItem->id }}"
@@ -131,8 +137,9 @@
                                         padding: 7px 11px;
                                         border-radius: 100%;"
                                             href="javascript:;" class="add_to_wishlist" data-id="{{ $product->id }}"><i
-                                                class="fal fa-heart"></i></a></li>
-
+                                                class="fal fa-heart"></i>
+                                        </a>
+                                    </li>
                                     <li>
                                         <button type="button"
                                             style="border: 1px solid gray;
@@ -201,12 +208,20 @@
                                             <div class="col-xl-6 col-xxl-7 col-md-6 mt-4 mt-md-0">
                                                 <div class="wsus__pro_det_vendor_text">
                                                     <h4>{{ $product->vendor->user->name }}</h4>
-                                                    <p class="rating">
+                                                    <p class="wsus__pro_rating">
+                                                        @php
+                                                            $avgRating = $product->reviews()->avg('rating'); // get the average rating of the product
+                                                            $fullRating = round($avgRating);
+                                                        @endphp
 
                                                         @for ($i = 1; $i <= 5; $i++)
-                                                            <i class="fas fa-star"></i>
+                                                            @if ($i <= $fullRating)
+                                                                <i class="fas fa-star"></i>
+                                                            @else
+                                                                <i class="far fa-star"></i>
+                                                            @endif
                                                         @endfor
-                                                        <span>review</span>
+                                                        <span>({{ $product->review_count }} review)</span>
                                                     </p>
                                                     <p><span>Store Name:</span> {{ $product->vendor->shop_name }}</p>
                                                     <p><span>Address:</span> {{ $product->vendor->address }}</p>
@@ -231,7 +246,7 @@
                                                 <div class="col-xl-8 col-lg-7">
                                                     <div class="wsus__comment_area">
                                                         <h4>Reviews</span></h4>
-                                                        {{-- @foreach ($reviews as $review)
+                                                        @foreach ($reviews as $review)
                                                             <div class="wsus__main_comment">
                                                                 <div class="wsus__comment_img">
                                                                     <img src="{{ asset($review->user->image) }}"
@@ -257,18 +272,18 @@
                                                                     </ul>
                                                                 </div>
                                                             </div>
-                                                        @endforeach --}}
+                                                        @endforeach
 
                                                         <div class="mt-5">
-                                                            {{-- @if ($reviews->hasPages())
+                                                            @if ($reviews->hasPages())
                                                                 {{ $reviews->links() }}
-                                                            @endif --}}
+                                                            @endif
                                                         </div>
                                                     </div>
                                                 </div>
                                                 <div class="col-xl-4 col-lg-5 mt-4 mt-lg-0">
                                                     @auth
-                                                        {{-- @php
+                                                        @php
                                                             $isBrought = false;
                                                             $orders = \App\Models\Order::where([
                                                                 'user_id' => auth()->user()->id,
@@ -285,9 +300,9 @@
                                                                 }
                                                             }
 
-                                                        @endphp --}}
+                                                        @endphp
 
-                                                        {{-- @if ($isBrought === true)
+                                                        @if ($isBrought === true)
                                                             <div class="wsus__post_comment rev_mar" id="sticky_sidebar3">
                                                                 <h4>write a Review</h4>
                                                                 <form action="{{ route('user.review.create') }}"
@@ -335,7 +350,7 @@
                                                                         review</button>
                                                                 </form>
                                                             </div>
-                                                        @endif --}}
+                                                        @endif
                                                     @endauth
 
                                                 </div>

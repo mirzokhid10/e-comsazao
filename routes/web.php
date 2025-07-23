@@ -7,10 +7,13 @@ use App\Http\Controllers\Frontend\CartController;
 use App\Http\Controllers\Frontend\FlashSaleController;
 use App\Http\Controllers\Frontend\FrontendProductController;
 use App\Http\Controllers\Frontend\HomeController;
+use App\Http\Controllers\Frontend\NewsletterController;
+use App\Http\Controllers\Frontend\ReviewController;
 use App\Http\Controllers\Frontend\UserAddressController;
 use App\Http\Controllers\Frontend\UserDashboardController;
 use App\Http\Controllers\Frontend\UserProfileController;
 use App\Http\Controllers\Frontend\UserOrderController;
+use App\Http\Controllers\Frontend\WishListController;
 use App\Http\Controllers\ProfileController;
 use Illuminate\Support\Facades\Route;
 
@@ -40,7 +43,11 @@ Route::get('flash-sale', [FlashSaleController::class, 'index'])->name('flash-sal
 ////    FrontEnd Product Controller Route
 ///////////////////////////////////////////
 
+Route::get('products', [FrontendProductController::class, 'productsIndex'])->name('products.index');
 Route::get('product-detail/{slug}', [FrontendProductController::class, 'showProduct'])->name('product-detail');
+Route::get('change-product-list-view', [FrontendProductController::class, 'chageListView'])->name('change-product-list-view');
+
+Route::get('show-product-modal/{id}', [HomeController::class, 'ShowProductModal'])->name('show-product-modal');
 
 ///////////////////////////////////////////
 ////    Add To Cart Routes
@@ -56,8 +63,22 @@ Route::get('cart-products', [CartController::class, 'getCartProducts'])->name('c
 Route::post('cart/remove-sidebar-product', [CartController::class, 'removeSidebarProduct'])->name('cart.remove-sidebar-product');
 Route::get('cart/sidebar-product-total', [CartController::class, 'cartTotal'])->name('cart.sidebar-product-total');
 
+
 Route::get('apply-coupon', [CartController::class, 'applyCoupon'])->name('apply-coupon');
 Route::get('coupon-calculation', [CartController::class, 'couponCalculation'])->name('coupon-calculation');
+
+///////////////////////////////////////////
+////    Add Product To Wishlist
+///////////////////////////////////////////
+
+Route::get('wishlist/add-product', [WishListController::class, 'addToWishlist'])->name('wishlist.store');
+
+///////////////////////////////////////////
+////    Newsletter Request
+///////////////////////////////////////////
+
+Route::post('newsletter-request', [NewsletterController::class, 'newsLetterRequset'])->name('newsletter-request');
+Route::get('newsletter-verify/{token}', [NewsletterController::class, 'newsLetterEmailVarify'])->name('newsletter-verify');
 
 ///////////////////////////////////////////
 ////    User Controller Route
@@ -98,7 +119,7 @@ Route::group(['middleware' => ['auth', 'verified'], 'prefix' => 'user', 'as' => 
     ////    Stripe Routes Controller Routes
     ///////////////////////////////////////////
 
-    Route::post('stripe/payment', [PaymentController::class,'payWithStripe'])->name('stripe.payment');
+    Route::post('stripe/payment', [PaymentController::class, 'payWithStripe'])->name('stripe.payment');
     Route::get('stripe/success', [PaymentController::class, 'stripeSuccess'])->name('stripe.success');
     Route::get('stripe/cancel', [PaymentController::class, 'stripeCancel'])->name('stripe.cancel');
 
@@ -108,4 +129,18 @@ Route::group(['middleware' => ['auth', 'verified'], 'prefix' => 'user', 'as' => 
 
     Route::get('order', [UserOrderController::class, 'index'])->name('orders.index');
     Route::get('order/show/{id}', [UserOrderController::class, 'show'])->name('orders.show');
+
+    ///////////////////////////////////////////
+    ////    Wish List Controller Routes
+    ///////////////////////////////////////////
+    Route::get('wishlist', [WishListController::class, 'index'])->name('wishlist.index');
+    Route::get('wishlist/remove-product/{id}', [WishListController::class, 'destroy'])->name('wishlist.destroy');
+
+
+    ///////////////////////////////////////////
+    ////    Review Controller Routes
+    ///////////////////////////////////////////
+
+    Route::post('review', [ReviewController::class, 'create'])->name('reviews.create');
+    Route::get('review', [ReviewController::class, 'index'])->name('reviews.index');
 });

@@ -37,7 +37,7 @@
                                     </a>
                                 </div>
                                 <div class="col-xl-2 col-6 col-md-4">
-                                    <a class="wsus__dashboard_item blue" href="">
+                                    <a class="wsus__dashboard_item blue" href="{{ route('user.reviews.index') }}">
                                         <i class="fas fa-star"></i>
                                         <p>Reviews</p>
                                         <h4 style="color:#ffff"></h4>

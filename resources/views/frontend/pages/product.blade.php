@@ -5,9 +5,9 @@
 @endsection
 
 @section('content')
-    {{-- <!--============================
-        BREADCRUMB START
-    ==============================--> --}}
+    <!--============================
+                BREADCRUMB START
+            ==============================-->
     <section id="wsus__breadcrumb">
         <div class="wsus_breadcrumb_overlay">
             <div class="container">
@@ -23,14 +23,14 @@
             </div>
         </div>
     </section>
-    {{-- <!--============================
-        BREADCRUMB END
-    ==============================--> --}}
+    <!--============================
+                BREADCRUMB END
+            ==============================-->
 
 
-    {{-- <!--============================
-        PRODUCT PAGE START
-    ==============================--> --}}
+    <!--============================
+                PRODUCT PAGE START
+            ==============================-->
     <section id="wsus__product_page">
         <div class="container">
             <div class="row">
@@ -182,25 +182,28 @@
                                                             data-bs-target="#exampleModal" class="show_product_modal"
                                                             data-id="{{ $product->id }}"><i class="far fa-eye"></i></a>
                                                     </li>
-                                                    <li><a href="#" class="add_to_wishlist"
+                                                    <li><a href="" class="add_to_wishlist"
                                                             data-id="{{ $product->id }}"><i
                                                                 class="far fa-heart"></i></a></li>
-                                                    {{-- <li><a href="#"><i class="far fa-random"></i></a> --}}
+                                                    <li><a href="#"><i class="far fa-random"></i></a>
                                                 </ul>
                                                 <div class="wsus__product_details">
                                                     <a class="wsus__category"
                                                         href="#">{{ $product->category->name }} </a>
                                                     <p class="wsus__pro_rating">
+                                                        @php
+                                                            $avgRating = $product->reviews()->avg('rating'); // get the average rating of the product
+                                                            $fullRating = round($avgRating);
+                                                        @endphp
 
                                                         @for ($i = 1; $i <= 5; $i++)
-                                                            @if ($i <= $product->ratings_avg_review)
+                                                            @if ($i <= $fullRating)
                                                                 <i class="fas fa-star"></i>
                                                             @else
                                                                 <i class="far fa-star"></i>
                                                             @endif
                                                         @endfor
-
-                                                        <span>({{ $product->reviews_count }} review)</span>
+                                                        <span>({{ $product->review_count }} review)</span>
                                                     </p>
                                                     <a class="wsus__pro_name"
                                                         href="{{ route('product-detail', $product->slug) }}">{{ limitText($product->name, 53) }}</a>
@@ -213,12 +216,10 @@
                                                         <p class="wsus__price">
                                                             {{ $settings->currency_icon }}{{ $product->price }}</p>
                                                     @endif
-                                                    <form class="shopping-cart-form" method="POST"
-                                                        action="{{ route('add-to-cart') }}">
+                                                    <form class="shopping-cart-form">
                                                         <input type="hidden" name="product_id"
                                                             value="{{ $product->id }}">
-                                                        <input type="hidden" name="qty" value="1">
-                                                        @foreach ($product->productVariants as $variant)
+                                                        @foreach ($product->variants as $variant)
                                                             @if ($variant->status != 0)
                                                                 <select class="d-none" name="variants_items[]">
                                                                     @foreach ($variant->productVariantItems as $variantItem)
@@ -241,8 +242,11 @@
                                             </div>
                                         </div>
                                     @endforeach
+
+
                                 </div>
                             </div>
+
                             <div class="tab-pane fade {{ session()->has('product_list_style') && session()->get('product_list_style') == 'list' ? 'show active' : '' }}"
                                 id="v-pills-profile" role="tabpanel" aria-labelledby="v-pills-profile-tab">
                                 <div class="row">
@@ -299,14 +303,10 @@
                                                     <p class="list_description">{{ $product->short_description }}</p>
                                                     <ul class="wsus__single_pro_icon">
 
-                                                        <form class="shopping-cart-form" method="POST"
-                                                            action="{{ route('add-to-cart') }}">
-
-                                                            @csrf
+                                                        <form class="shopping-cart-form">
                                                             <input type="hidden" name="product_id"
                                                                 value="{{ $product->id }}">
-                                                            <input type="hidden" name="qty" value="1">
-                                                            @foreach ($product->productVariants as $variant)
+                                                            @foreach ($product->variants as $variant)
                                                                 @if ($variant->status != 0)
                                                                     <select class="d-none" name="variants_items[]">
                                                                         @foreach ($variant->productVariantItems as $variantItem)
@@ -359,10 +359,52 @@
             </div>
         </div>
     </section>
-    {{-- <!--============================
-        PRODUCT PAGE END
-    ==============================--> --}}
+    <!--============================
+                PRODUCT PAGE END
+            ==============================-->
 @endsection
 
 @push('scripts')
+    <script>
+        $(document).ready(function() {
+            $('.list-view').on('click', function() {
+                let style = $(this).data('id');
+
+                $.ajax({
+                    method: 'GET',
+                    url: "{{ route('change-product-list-view') }}",
+                    data: {
+                        style: style
+                    },
+                    success: function(data) {
+
+                    }
+                })
+            })
+        })
+        @php
+            if (request()->has('range') && request()->range != '') {
+                $price = explode(';', request()->range);
+                $from = $price[0];
+                $to = $price[1];
+            } else {
+                $from = 0;
+                $to = 8000;
+            }
+        @endphp
+        jQuery(function() {
+            jQuery("#slider_range").flatslider({
+                min: 0,
+                max: 10000,
+                step: 100,
+                values: [{{ $from }}, {{ $to }}],
+                range: true,
+                einheit: '{{ $settings->currency_icon }}'
+            });
+        });
+
+
+
+    </script>
+
 @endpush

@@ -3,12 +3,14 @@
 namespace App\Http\Controllers\Frontend;
 
 use App\Http\Controllers\Controller;
+use App\Models\Advertisement;
 use App\Models\Product;
 use App\Models\ProductVariantItem;
 use App\Models\Coupon;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Session;
 use Gloudemans\Shoppingcart\Facades\Cart;
+
 
 class CartController extends Controller
 {
@@ -22,7 +24,10 @@ class CartController extends Controller
             return redirect()->route('home');
         }
 
-        return view('frontend.pages.cart-details', compact('cartItems'));
+        $cartpage_banner_section = Advertisement::where('key', 'cartpage_banner_section')->first();
+        $cartpage_banner_section = json_decode($cartpage_banner_section?->value);
+
+        return view('frontend.pages.cart-details', compact('cartItems', 'cartpage_banner_section'));
     }
 
     /** Add item to cart */
@@ -37,14 +42,14 @@ class CartController extends Controller
             return response(['status' => 'error', 'message' => 'Quantity not available in our stock']);
         }
 
-        $variants = [];
+        $productVariants = [];
         $variantTotalAmount = 0;
 
         if ($request->has('variants_items')) {
             foreach ($request->variants_items as $item_id) {
                 $variantItem = ProductVariantItem::find($item_id);
-                $variants[$variantItem->productVariant->name]['name'] = $variantItem->name;
-                $variants[$variantItem->productVariant->name]['price'] = $variantItem->price;
+                $productVariants[$variantItem->productVariant->name]['name'] = $variantItem->name;
+                $productVariants[$variantItem->productVariant->name]['price'] = $variantItem->price;
                 $variantTotalAmount += $variantItem->price;
             }
         }
@@ -59,9 +64,9 @@ class CartController extends Controller
         }
 
         // Check if this product+variant combo already exists in the cart
-        $exists = Cart::content()->first(function ($cartItem) use ($product, $variants) {
+        $exists = Cart::content()->first(function ($cartItem) use ($product, $productVariants) {
             return $cartItem->id == $product->id &&
-                $cartItem->options['variants'] == $variants;
+                $cartItem->options['variants'] == $productVariants;
         });
 
         if ($exists) {
@@ -75,7 +80,7 @@ class CartController extends Controller
         $cartData['qty'] = $request->qty;
         $cartData['price'] = $productPrice;
         $cartData['weight'] = 10;
-        $cartData['options']['variants'] = $variants;
+        $cartData['options']['variants'] = $productVariants;
         $cartData['options']['variants_total'] = $variantTotalAmount;
         $cartData['options']['image'] = $product->thumb_image;
         $cartData['options']['slug'] = $product->slug;

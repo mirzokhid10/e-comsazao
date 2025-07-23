@@ -38,4 +38,14 @@ class Product extends Model
     {
         return $this->hasMany(ProductImageGallery::class);
     }
+
+    public function wishlists()
+    {
+        return $this->hasMany(WishList::class);
+    }
+
+    public function reviews()
+    {
+        return $this->hasMany(ProductReview::class);
+    }
 }

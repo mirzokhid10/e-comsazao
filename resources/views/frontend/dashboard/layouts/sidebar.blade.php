@@ -6,12 +6,17 @@
     <a href="{{ route('user.dashboard') }}" class="dash_logo"><img src="{{ asset('frontend/images/logo.png') }}"
             alt="logo" class="img-fluid"></a>
     <ul class="dashboard_link">
-        <li><a class="{{ setActive(['user.dashboard.*']) }}" href="{{ route('user.dashboard') }}"><i class="fas fa-tachometer"></i>Dashboard</a></li>
+        <li><a class="{{ setActive(['user.dashboard.*']) }}" href="{{ route('user.dashboard') }}"><i
+                    class="fas fa-tachometer"></i>Dashboard</a></li>
         <li><a href="/"><i class="far fa-home"></i> Go To Home Page</a></li>
-        <li><a class="{{ setActive(['user.orders.*']) }}" href="{{ route('user.orders.index') }}">
-                <i class="fas fa-list-ul"></i> Orders</a></li>
-        <li><a class="{{ setActive(['user.profile.*']) }}" href="{{ route('user.profile') }}"><i class="far fa-user"></i> My Profile</a></li>
-        <li><a class="{{ setActive(['user.address.*']) }}" href="{{ route('user.address.index') }}"><i class="fas fa-user"></i>Address</a></li>
+        <li><a class="{{ setActive(['user.orders.*']) }}" href="{{ route('user.orders.index') }}"><i
+                    class="fas fa-list-ul"></i> Orders</a></li>
+        <li><a class="{{ setActive(['user.reviews.*']) }}" href="{{ route('user.reviews.index') }}"><i
+                    class="fas fa-user"></i>Reviews</a></li>
+        <li><a class="{{ setActive(['user.profile.*']) }}" href="{{ route('user.profile') }}"><i
+                    class="far fa-user"></i> My Profile</a></li>
+        <li><a class="{{ setActive(['user.address.*']) }}" href="{{ route('user.address.index') }}"><i
+                    class="fas fa-user"></i>Address</a></li>
         <li>
             <form method="POST" action="{{ route('logout') }}" class="">
                 @csrf

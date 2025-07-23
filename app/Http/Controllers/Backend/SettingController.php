@@ -3,9 +3,13 @@
 namespace App\Http\Controllers\Backend;
 
 use App\Http\Controllers\Controller;
+use App\Models\EmailConfiguration;
 use App\Models\GeneralSetting;
+use App\Models\LogoSetting;
+use App\Models\PusherSetting;
 use App\Traits\ImageUploadTrait;
 use Illuminate\Http\Request;
+use Illuminate\Http\RedirectResponse;
 
 class SettingController extends Controller
 {
@@ -14,7 +18,9 @@ class SettingController extends Controller
     public function index()
     {
         $generalSettings = GeneralSetting::first();
-        return view('admin.setting.index', compact('generalSettings'));
+        $emailSettings = EmailConfiguration::first();
+        $pusherSettings = PusherSetting::first();
+        return view('admin.setting.index', compact('generalSettings', 'emailSettings', 'pusherSettings'));
     }
 
     public function generalSettingUpdate(Request $request)
@@ -44,6 +50,76 @@ class SettingController extends Controller
         );
 
         notify()->success('General Settings Updated Successfully!');
+
+        return redirect()->back();
+    }
+
+    public function emailConfigSettingUpdate(Request $request)
+    {
+        $request->validate([
+            'email' => ['required', 'email'],
+            'host' => ['required', 'max:200'],
+            'username' => ['required', 'max:200'],
+            'password' => ['required', 'max:200'],
+            'port' => ['required', 'max:200'],
+            'encryption' => ['required', 'max:200'],
+        ]);
+
+        EmailConfiguration::updateOrCreate(
+            ['id' => 1],
+            [
+                'email' => $request->email,
+                'host' => $request->host,
+                'username' => $request->username,
+                'password' => $request->password,
+                'port' => $request->port,
+                'encryption' => $request->encryption,
+            ]
+        );
+
+        notify()->success('Email Configuration Updated Successfully!');
+
+        return redirect()->back();
+    }
+
+    public function logoSettingUpdate(Request $request)
+    {
+        $request->validate([
+            'logo' => ['image', 'max:3000'],
+            'favicon' => ['image', 'max:3000'],
+        ]);
+
+        $logoPath = $this->updateImage($request, 'logo', 'uploads', $request->old_logo);
+        $favicon = $this->updateImage($request, 'favicon', 'uploads', $request->old_favicon);
+
+        LogoSetting::updateOrCreate(
+            ['id' => 1],
+            [
+                'logo' => (!empty($logoPath)) ? $logoPath : $request->old_logo,
+                'favicon' => (!empty($favicon)) ? $favicon : $request->old_favicon
+            ]
+        );
+
+        notify()->success('Logo Setting Updated Successfully!');
+
+        return redirect()->back();
+    }
+
+    function pusherSettingUpdate(Request $request): RedirectResponse
+    {
+        $validatedData = $request->validate([
+            'pusher_app_id' => ['required'],
+            'pusher_key' => ['required'],
+            'pusher_secret' => ['required'],
+            'pusher_cluster' => ['required'],
+        ]);
+
+        PusherSetting::updateOrCreate(
+            ['id' => 1],
+            $validatedData
+        );
+
+        notify()->success('Pusher Setting Updated Successfully!');
 
         return redirect()->back();
     }

@@ -18,22 +18,37 @@
              <li class="menu-header">Starter</li>
              <li
                  class="dropdown {{ setActive([
-                        'admin.slider.*',
-                        'admin.brand.*',
-                        'admin.flash-sale.*']) }}">
+                     'admin.slider.*',
+                     'admin.brand.*',
+                     'admin.setting.*',
+                     'admin.flash-sale.*',
+                     'admin.home-page-setting.*',
+                     'admin.newsletter-subscriber.*',
+                 ]) }}">
                  <a href="#" class="nav-link has-dropdown" data-toggle="dropdown"><i class="fas fa-th"></i>
                      <span>Website Managment</span></a>
                  <ul class="dropdown-menu">
-                     <li><a class="{{ setActive(['admin.slider.*']) }}" href="{{ route('admin.slider.index') }}">Main
+                     <li class="{{ setActive(['admin.slider.*']) }}"><a class="nav-link"
+                             href="{{ route('admin.slider.index') }}">Main
                              Page Sliders</a></li>
-                     <li><a class="{{ setActive(['admin.brand.*']) }}" href="{{ route('admin.brand.index') }}">Main
+                     <li class="{{ setActive(['admin.brand.*']) }}"><a class="nav-link"
+                             href="{{ route('admin.brand.index') }}">Main
                              Page Brands</a></li>
-                     <li><a class="{{ setActive(['admin.setting.*']) }}" href="{{ route('admin.setting.index') }}">
+                     <li class="{{ setActive(['admin.setting.*']) }}"><a class="nav-link"
+                             href="{{ route('admin.setting.index') }}">
                              Main Page Settings</a>
                      </li>
-                     <li><a class="{{ setActive(['admin.flash-sale.*']) }}"
+                     <li class="{{ setActive(['admin.newsletter-subscriber.*']) }}"><a class="nav-link"
+                             href="{{ route('admin.newsletter-subscriber.index') }}">
+                             Newsletter Subscriber</a>
+                     </li>
+                     <li class="{{ setActive(['admin.flash-sale.*']) }}"><a class="nav-link"
                              href="{{ route('admin.flash-sale.index') }}">
                              Flash Sale Pages</a></li>
+                     <li class="{{ setActive(['admin.home-page-setting.*']) }}">
+                         <a class="nav-link" href="{{ route('admin.home-page-setting.index') }}">
+                             Home Page Setting</a>
+                     </li>
                  </ul>
              </li>
          </ul>
@@ -65,54 +80,58 @@
                              href="{{ route('admin.seller-products.index') }}">Seller Products</a></li>
                      <li class="{{ setActive(['admin.seller-pending-products.*']) }}"><a class="nav-link"
                              href="{{ route('admin.seller-pending-products.index') }}">Seller Pending Products</a></li>
-                 </ul>
+                     <li class="{{ setActive(['admin.reviews.*']) }}"><a class="nav-link"
+                             href="{{ route('admin.reviews.index') }}">Product Reviews</a></li>
+             </li>
              </li>
          </ul>
 
          <ul class="sidebar-menu">
              <li class="menu-header">Orders </li>
              <li
-                class="dropdown {{ setActive([
-                    'admin.order.*',
-                    'admin.pending-orders',
-                    'admin.processed-orders',
-                    'admin.dropped-off-orders',
-                    'admin.shipped-orders',
-                    'admin.out-for-delivery-orders',
-                    'admin.delivered-orders',
-                    'admin.canceled-orders',
-                ]) }}">
-                <a href="#" class="nav-link has-dropdown" data-toggle="dropdown"><i class="fas fa-cart-plus"></i>
-                    <span>Orders</span></a>
-                <ul class="dropdown-menu">
-                    <li class="{{ setActive(['admin.order.*']) }}"><a class="nav-link"
-                            href="{{ route('admin.order.index') }}">All Orders</a></li>
-                    <li class="{{ setActive(['admin.pending-orders']) }}"><a class="nav-link"
-                            href="{{ route('admin.pending-orders') }}">All Pending Orders</a></li>
-                    <li class="{{ setActive(['admin.processed-orders']) }}"><a class="nav-link"
-                            href="{{ route('admin.processed-orders') }}">All Processed Orders</a></li>
-                    <li class="{{ setActive(['admin.dropped-off']) }}"><a class="nav-link"
-                            href="{{ route('admin.dropped-off-orders') }}">All Dropped Off Orders</a></li>
+                 class="dropdown {{ setActive([
+                     'admin.order.*',
+                     'admin.pending-orders',
+                     'admin.processed-orders',
+                     'admin.dropped-off-orders',
+                     'admin.shipped-orders',
+                     'admin.out-for-delivery-orders',
+                     'admin.delivered-orders',
+                     'admin.canceled-orders',
+                 ]) }}">
+                 <a href="#" class="nav-link has-dropdown" data-toggle="dropdown"><i class="fas fa-cart-plus"></i>
+                     <span>Orders</span></a>
+                 <ul class="dropdown-menu">
+                     <li class="{{ setActive(['admin.order.*']) }}"><a class="nav-link"
+                             href="{{ route('admin.order.index') }}">All Orders</a></li>
+                     <li class="{{ setActive(['admin.pending-orders']) }}"><a class="nav-link"
+                             href="{{ route('admin.pending-orders') }}">All Pending Orders</a></li>
+                     <li class="{{ setActive(['admin.processed-orders']) }}"><a class="nav-link"
+                             href="{{ route('admin.processed-orders') }}">All Processed Orders</a></li>
+                     <li class="{{ setActive(['admin.dropped-off']) }}"><a class="nav-link"
+                             href="{{ route('admin.dropped-off-orders') }}">All Dropped Off Orders</a></li>
 
-                    <li class="{{ setActive(['admin.shipped-orders']) }}"><a class="nav-link"
-                            href="{{ route('admin.shipped-orders') }}">All Shipped Orders</a></li>
-                    <li class="{{ setActive(['admin.out-for-delivery-orders']) }}"><a class="nav-link"
-                            href="{{ route('admin.out-for-delivery-orders') }}">All Out For Delivery Orders</a></li>
+                     <li class="{{ setActive(['admin.shipped-orders']) }}"><a class="nav-link"
+                             href="{{ route('admin.shipped-orders') }}">All Shipped Orders</a></li>
+                     <li class="{{ setActive(['admin.out-for-delivery-orders']) }}"><a class="nav-link"
+                             href="{{ route('admin.out-for-delivery-orders') }}">All Out For Delivery
+                             Orders</a></li>
 
 
-                    <li class="{{ setActive(['admin.delivered-orders']) }}"><a class="nav-link"
-                            href="{{ route('admin.delivered-orders') }}">All Delivered Orders</a></li>
+                     <li class="{{ setActive(['admin.delivered-orders']) }}"><a class="nav-link"
+                             href="{{ route('admin.delivered-orders') }}">All Delivered Orders</a></li>
 
-                    <li class="{{ setActive(['admin.canceled-orders']) }}"><a class="nav-link"
-                            href="{{ route('admin.canceled-orders') }}">All Canceled Orders</a></li>
+                     <li class="{{ setActive(['admin.canceled-orders']) }}"><a class="nav-link"
+                             href="{{ route('admin.canceled-orders') }}">All Canceled Orders</a></li>
 
-                </ul>
-            </li>
+                 </ul>
+             </li>
          </ul>
 
          <ul class="sidebar-menu">
              <li class="menu-header">Transactions</li>
-             <li class="{{ setActive(['admin.transaction']) }}"><a class="nav-link" href="{{ route('admin.transaction') }}">
+             <li class="{{ setActive(['admin.transaction']) }}"><a class="nav-link"
+                     href="{{ route('admin.transaction') }}">
                      <i class="fas fa-money-bill-alt"></i>
                      <span>Transactions</span></a>
              </li>
@@ -140,10 +159,7 @@
          <ul class="sidebar-menu">
              <li class="menu-header">Transactions</li>
              <li
-                 class="dropdown {{ setActive([
-                        'admin.vendor-profile.*',
-                        'admin.coupon.*',
-                        'admin.shipping-rule.*']) }}">
+                 class="dropdown {{ setActive(['admin.vendor-profile.*', 'admin.coupon.*', 'admin.shipping-rule.*']) }}">
                  <a href="#" class="nav-link has-dropdown" data-toggle="dropdown"><i class="fas fa-th"></i>
                      <span>Vendor Managment</span></a>
                  <ul class="dropdown-menu">
@@ -155,6 +171,32 @@
                              href="{{ route('admin.shipping-rule.index') }}">Shipping Managment</a></li>
                      <li><a class="{{ setActive(['admin.payment-settings.*']) }}"
                              href="{{ route('admin.payment-settings.index') }}">Payment Managment</a></li>
+                 </ul>
+             </li>
+         </ul>
+
+         <ul class="sidebar-menu">
+             <li class="menu-header">Footer</li>
+             <li
+                 class="dropdown {{ setActive([
+                     'admin.footer-info.*',
+                     'admin.footer-grid-two.*',
+                     'admin.footer-grid-three.*',
+                     'admin.footer-social.*',
+                 ]) }}">
+                 <a href="#" class="nav-link has-dropdown" data-toggle="dropdown"><i class="fas fa-th"></i>
+                     <span>Footer Managment</span></a>
+                 <ul class="dropdown-menu">
+                     <li class="{{ setActive(['admin.footer-info.*']) }}"><a class="nav-link"
+                             href="{{ route('admin.footer-info.index') }}">Footer Info</a></li>
+                     <li class="{{ setActive(['admin.footer-grid-two.*']) }}"><a class="nav-link"
+                             href="{{ route('admin.footer-grid-two.index') }}">Footer Grid Two</a></li>
+                     <li class="{{ setActive(['admin.footer-grid-three.*']) }}"><a class="nav-link"
+                             href="{{ route('admin.footer-grid-three.index') }}">Footer Grid Three</a></li>
+                     <li class="{{ setActive(['admin.footer-social.*']) }}"><a class="nav-link"
+                             href="{{ route('admin.footer-social.index') }}">Footer Social</a></li>
+                     <li class="{{ setActive(['admin.advertisement.*']) }}"><a class="nav-link"
+                             href="{{ route('admin.advertisement.index') }}">Advertisement</a></li>
                  </ul>
              </li>
          </ul>
