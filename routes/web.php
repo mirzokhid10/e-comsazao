@@ -8,11 +8,13 @@ use App\Http\Controllers\Frontend\FlashSaleController;
 use App\Http\Controllers\Frontend\FrontendProductController;
 use App\Http\Controllers\Frontend\HomeController;
 use App\Http\Controllers\Frontend\NewsletterController;
+use App\Http\Controllers\Frontend\ProductTrackController;
 use App\Http\Controllers\Frontend\ReviewController;
 use App\Http\Controllers\Frontend\UserAddressController;
 use App\Http\Controllers\Frontend\UserDashboardController;
 use App\Http\Controllers\Frontend\UserProfileController;
 use App\Http\Controllers\Frontend\UserOrderController;
+use App\Http\Controllers\Frontend\UserVendorRequestController;
 use App\Http\Controllers\Frontend\WishListController;
 use App\Http\Controllers\ProfileController;
 use Illuminate\Support\Facades\Route;
@@ -66,6 +68,19 @@ Route::get('cart/sidebar-product-total', [CartController::class, 'cartTotal'])->
 
 Route::get('apply-coupon', [CartController::class, 'applyCoupon'])->name('apply-coupon');
 Route::get('coupon-calculation', [CartController::class, 'couponCalculation'])->name('coupon-calculation');
+
+///////////////////////////////////////////
+////    Vendor Page Routes
+///////////////////////////////////////////
+
+Route::get('vendor', [HomeController::class, 'vendorPage'])->name('vendor.index');
+Route::get('vendor-product/{id}', [HomeController::class, 'vendorProductsPage'])->name('vendor.products');
+
+///////////////////////////////////////////
+////    Product Tracking Routes
+///////////////////////////////////////////
+
+Route::get('product-traking', [ProductTrackController::class, 'index'])->name('product-traking.index');
 
 ///////////////////////////////////////////
 ////    Add Product To Wishlist
@@ -141,6 +156,14 @@ Route::group(['middleware' => ['auth', 'verified'], 'prefix' => 'user', 'as' => 
     ////    Review Controller Routes
     ///////////////////////////////////////////
 
-    Route::post('review', [ReviewController::class, 'create'])->name('reviews.create');
     Route::get('review', [ReviewController::class, 'index'])->name('reviews.index');
+    Route::post('review', [ReviewController::class, 'create'])->name('reviews.create');
+
+
+    ///////////////////////////////////////////
+    ////    User Vendor Request Controller Routes
+    ///////////////////////////////////////////
+
+    Route::get('vendor-request', [UserVendorRequestController::class, 'index'])->name('vendor-request.index');
+    Route::post('vendor-request', [UserVendorRequestController::class, 'create'])->name('vendor-request.create');
 });

@@ -245,8 +245,7 @@
                                             <div class="row">
                                                 <div class="col-xl-8 col-lg-7">
                                                     <div class="wsus__comment_area">
-
-                                                        <h4>Customer Reviews</span></h4>
+                                                        <h4>Reviews <span>{{ count($reviews) }}</span></h4>
                                                         @forelse ($reviews as $review)
                                                             <div class="wsus__main_comment">
                                                                 <div class="wsus__comment_img">

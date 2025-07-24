@@ -8,6 +8,7 @@ use Symfony\Component\HttpFoundation\Response;
 
 class RoleMiddleware
 {
+
     /**
      * Handle an incoming request.
      *
@@ -15,11 +16,12 @@ class RoleMiddleware
      */
     public function handle(Request $request, Closure $next, $role): Response
     {
+        // dd($role);
         if ($request->user()->role !== $role) {
             if ($request->user()->role == 'vendor') {
-                return redirect()->route('vendor.dashbaord');
+                return redirect()->route('vendor.dashboard');
             } elseif ($request->user()->role == 'admin') {
-                return redirect()->route('admin.dashbaord');
+                return redirect()->route('admin.dashboard');
             } else {
                 return redirect()->route('user.dashboard');
             }

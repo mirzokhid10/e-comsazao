@@ -45,7 +45,7 @@
     <!--============================
         MAIN MENU START
     ==============================-->
-    @include('frontend.layouts.navbar')
+    @include('frontend.layouts.menu')
     <!--============================
         MOBILE MENU END
     ==============================-->

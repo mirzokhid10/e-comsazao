@@ -17,12 +17,12 @@ class RouteServiceProvider extends ServiceProvider
         Route::middleware('web')
             ->group(base_path('routes/web.php'));
 
-        Route::middleware(['web', 'auth', 'role:admin'])
+        Route::middleware(['web', 'auth', \App\Http\Middleware\RoleMiddleware::class . ':admin'])
             ->prefix('admin')
             ->as('admin.')
             ->group(base_path('routes/admin.php'));
 
-        Route::middleware(['web', 'auth', 'role:vendor'])
+        Route::middleware(['web', 'auth', \App\Http\Middleware\RoleMiddleware::class . ':vendor'])
             ->prefix('vendor')
             ->as('vendor.')
             ->group(base_path('routes/vendor.php'));

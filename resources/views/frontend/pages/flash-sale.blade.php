@@ -52,7 +52,11 @@
 
                 <div class="row">
                     @php
-                        $products = \App\Models\Product::with(['variants', 'category', 'productImageGalleries'])->get();
+                        $products = \App\Models\Product::with([
+                            'productVariants',
+                            'category',
+                            'productImageGalleries',
+                        ])->get();
                     @endphp
                     @foreach ($products as $product)
                         <x-product-card :product="$product" />

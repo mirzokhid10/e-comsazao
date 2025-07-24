@@ -10,7 +10,7 @@
             @include('vendor.layouts.sidebar')
             <div class="row">
                 <div class="col-xl-9 col-xxl-10 col-lg-9 ms-auto">
-                    <h3>User Dashboard</h3>
+                    <h3>Vendor Dashboard</h3>
                     <br>
                     <div class="dashboard_content">
                         <div class="wsus__dashboard">
