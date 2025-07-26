@@ -63,8 +63,8 @@
                         <li><a class="{{ setActive(['flash-sale']) }}" href="{{ route('flash-sale') }}">flash Sale</a>
                         </li>
                         <li><a class="{{ setActive(['blog']) }}" href="{{ route('blog') }}">blog</a></li>
-                        {{-- <li><a class="{{ setActive(['about']) }}" href="{{ route('about') }}">about</a></li> --}}
-                        {{-- <li><a class="{{ setActive(['contact']) }}" href="{{ route('contact') }}">contact</a></li> --}}
+                        <li><a class="{{ setActive(['about']) }}" href="{{ route('about') }}">about</a></li>
+                        <li><a class="{{ setActive(['contact']) }}" href="{{ route('contact') }}">contact</a></li>
 
 
                     </ul>
