@@ -23,9 +23,9 @@
         <li><a class="{{ setActive(['user.address.*']) }}" href="{{ route('user.address.index') }}"><i
                     class="fas fa-map-marker-alt"></i>Address</a></li>
         @if (auth()->user()->role !== 'vendor')
-            <li><a class="" href="{{ route('user.vendor-request.index') }}"><i class="fas fa-store"></i>Be a
-                    Vendor</a>
-            </li>
+            <li><a class="{{ setActive(['user.vendor-request.*']) }}"
+                    href="{{ route('user.vendor-request.index') }}"><i class="far fa-user"></i> Request to be
+                    vendor</a></li>
         @endif
 
         <li>

@@ -37,7 +37,7 @@
                 <div class="row">
                     <div class="col-xl-5 col-md-10 col-lg-8 m-auto">
 
-                        <form class="tack_form" action="{{ route('product-traking.index') }}" method="GET">
+                        <form class="tack_form" action="{{ route('product-tracking.index') }}" method="GET">
 
                             <h4 class="text-center">order tracking</h4>
                             <p class="text-center">tracking your order status</p>

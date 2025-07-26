@@ -23,7 +23,10 @@
                      'admin.setting.*',
                      'admin.flash-sale.*',
                      'admin.home-page-setting.*',
+                     'admin.vendor-condition.*',
+                     'admin.terms-and-conditions.*',
                      'admin.newsletter-subscriber.*',
+                     'admin.about.*',
                  ]) }}">
                  <a href="#" class="nav-link has-dropdown" data-toggle="dropdown"><i class="fas fa-th"></i>
                      <span>Website Managment</span></a>
@@ -31,6 +34,7 @@
                      <li class="{{ setActive(['admin.slider.*']) }}"><a class="nav-link"
                              href="{{ route('admin.slider.index') }}">Main
                              Page Sliders</a></li>
+
                      <li class="{{ setActive(['admin.brand.*']) }}"><a class="nav-link"
                              href="{{ route('admin.brand.index') }}">Main
                              Page Brands</a></li>
@@ -41,7 +45,8 @@
                      <li class="{{ setActive(['admin.newsletter-subscriber.*']) }}"><a class="nav-link"
                              href="{{ route('admin.newsletter-subscriber.index') }}">
                              Newsletter Subscriber</a>
-                     </li>
+                     <li class="{{ setActive(['admin.terms-and-conditions.*']) }}"><a class="nav-link"
+                             href="{{ route('admin.terms-and-conditions.index') }}">Terms and Conditions</a></li>
                      <li class="{{ setActive(['admin.flash-sale.*']) }}"><a class="nav-link"
                              href="{{ route('admin.flash-sale.index') }}">
                              Flash Sale Pages</a></li>
@@ -49,7 +54,8 @@
                          <a class="nav-link" href="{{ route('admin.home-page-setting.index') }}">
                              Home Page Setting</a>
                      </li>
-                 </ul>
+                     <li class="{{ setActive(['admin.about.*']) }}"><a class="nav-link"
+                             href="{{ route('admin.about.index') }}">About</a></li>
              </li>
          </ul>
 
@@ -138,6 +144,22 @@
          </ul>
 
          <ul class="sidebar-menu">
+             <li class="menu-header">Blog</li>
+             <li class="dropdown {{ setActive(['admin.blog-category.*', 'admin.blog-comment.*', 'admin.blog.*']) }}">
+                 <a href="#" class="nav-link has-dropdown" data-toggle="dropdown"><i class="fas fa-th"></i>
+                     <span>Blog Managment</span></a>
+                 <ul class="dropdown-menu">
+                     <li><a class="{{ setActive(['admin.blog.*']) }}"
+                             href="{{ route('admin.blog.index') }}">Blogs</a></li>
+                     <li><a class="{{ setActive(['admin.blog-category.*']) }}"
+                             href="{{ route('admin.blog-category.index') }}">Blog Categories</a></li>
+                     <li><a class="{{ setActive(['admin.blog-comment.*']) }}"
+                             href="{{ route('admin.blog-comment.index') }}">Blog Comments</a></li>
+                 </ul>
+             </li>
+         </ul>
+
+         <ul class="sidebar-menu">
              <li class="menu-header">Categories</li>
              <li
                  class="dropdown {{ setActive(['admin.category.*', 'admin.sub-category.*', 'admin.child-category.*']) }}">
@@ -170,6 +192,12 @@
                              <span>Vendor Requests</span>
                          </a>
                      </li>
+                     <li><a class="{{ setActive(['admin.admin-list.*']) }}"
+                             href="{{ route('admin.admin-list.index') }}">Admin Managment</a></li>
+                     <li class="{{ setActive(['admin.manage-user.*']) }}"><a class="nav-link"
+                             href="{{ route('admin.manage-user.index') }}">Users Managment</a></li>
+                     <li class="{{ setActive(['admin.customer.*']) }}"><a class="nav-link"
+                             href="{{ route('admin.customer.index') }}">Customer Managment</a></li>
                      <li><a class="{{ setActive(['admin.coupon.*']) }}"
                              href="{{ route('admin.coupon.index') }}">Coupons Managment</a></li>
                      <li><a class="{{ setActive(['admin.shipping-rule.*']) }}"

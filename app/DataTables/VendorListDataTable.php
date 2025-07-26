@@ -2,7 +2,8 @@
 
 namespace App\DataTables;
 
-use App\Models\FlashSaleItem;
+use App\Models\User;
+use App\Models\VendorList;
 use Illuminate\Database\Eloquent\Builder as QueryBuilder;
 use Yajra\DataTables\EloquentDataTable;
 use Yajra\DataTables\Html\Builder as HtmlBuilder;
@@ -12,26 +13,18 @@ use Yajra\DataTables\Html\Editor\Editor;
 use Yajra\DataTables\Html\Editor\Fields;
 use Yajra\DataTables\Services\DataTable;
 
-class FlashSaleItemDataTable extends DataTable
+class VendorListDataTable extends DataTable
 {
     /**
      * Build the DataTable class.
      *
-     * @param QueryBuilder<FlashSaleItem> $query Results from query() method.
+     * @param QueryBuilder<VendorList> $query Results from query() method.
      */
     public function dataTable(QueryBuilder $query): EloquentDataTable
     {
         return (new EloquentDataTable($query))
-            ->addColumn('action', function ($query) {
-                $deleteBtn = "<a href='" . route('admin.flash-sale.destroy', $query->id) . "' class='btn btn-danger ml-2 delete-item'><i class='far fa-trash-alt'></i></a>";
-
-                return $deleteBtn;
-            })
-            ->addColumn('product_name', function ($query) {
-                return "<a href='" . route('admin.products.edit', $query->product->id) . "'>" . $query->product->name . "</a>";
-            })
             ->addColumn('status', function ($query) {
-                if ($query->status == 1) {
+                if ($query->status == 'active') {
                     $button = '<label class="custom-switch mt-2">
                         <input type="checkbox" checked name="custom-switch-checkbox" data-id="' . $query->id . '" class="custom-switch-input change-status" >
                         <span class="custom-switch-indicator"></span>
@@ -44,32 +37,21 @@ class FlashSaleItemDataTable extends DataTable
                 }
                 return $button;
             })
-            ->addColumn('show_at_home', function ($query) {
-                if ($query->show_at_home == 1) {
-                    $button = '<label class="custom-switch mt-2">
-                        <input type="checkbox" checked name="custom-switch-checkbox" data-id="' . $query->id . '" class="custom-switch-input change-at-home-status" >
-                        <span class="custom-switch-indicator"></span>
-                    </label>';
-                } else {
-                    $button = '<label class="custom-switch mt-2">
-                        <input type="checkbox" name="custom-switch-checkbox" data-id="' . $query->id . '" class="custom-switch-input change-at-home-status">
-                        <span class="custom-switch-indicator"></span>
-                    </label>';
-                }
-                return $button;
+            ->addColumn('shop_name', function ($query) {
+                return $query->vendor->shop_name;
             })
-            ->rawColumns(['status', 'show_at_home', 'action', 'product_name'])
+            ->rawColumns(['status'])
             ->setRowId('id');
     }
 
     /**
      * Get the query source of dataTable.
      *
-     * @return QueryBuilder<FlashSaleItem>
+     * @return QueryBuilder<VendorList>
      */
-    public function query(FlashSaleItem $model): QueryBuilder
+    public function query(User $model): QueryBuilder
     {
-        return $model->newQuery();
+        return $model->newQuery()->where('role', 'vendor');
     }
 
     /**
@@ -78,7 +60,7 @@ class FlashSaleItemDataTable extends DataTable
     public function html(): HtmlBuilder
     {
         return $this->builder()
-            ->setTableId('flashsaleitem-table')
+            ->setTableId('vendorlist-table')
             ->columns($this->getColumns())
             ->minifiedAjax()
             ->orderBy(1)
@@ -100,14 +82,11 @@ class FlashSaleItemDataTable extends DataTable
     {
         return [
             Column::make('id'),
-            Column::make('product_name'),
-            Column::make('show_at_home'),
+            Column::make('name'),
+            Column::make('email'),
+            Column::make('shop_name'),
+            Column::make('role'),
             Column::make('status'),
-            Column::computed('action')
-                ->exportable(false)
-                ->printable(false)
-                ->width(150)
-                ->addClass('text-center'),
         ];
     }
 
@@ -116,6 +95,6 @@ class FlashSaleItemDataTable extends DataTable
      */
     protected function filename(): string
     {
-        return 'FlashSaleItem_' . date('YmdHis');
+        return 'VendorList_' . date('YmdHis');
     }
 }

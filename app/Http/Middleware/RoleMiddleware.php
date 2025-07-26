@@ -9,6 +9,7 @@ use Symfony\Component\HttpFoundation\Response;
 class RoleMiddleware
 {
 
+
     /**
      * Handle an incoming request.
      *

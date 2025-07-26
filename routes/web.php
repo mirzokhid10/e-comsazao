@@ -1,6 +1,7 @@
 <?php
 
 use App\Http\Controllers\Backend\AdminController;
+use App\Http\Controllers\Frontend\BlogController;
 use App\Http\Controllers\Frontend\PaymentController;
 use App\Http\Controllers\Frontend\CheckOutController;
 use App\Http\Controllers\Frontend\CartController;
@@ -8,6 +9,7 @@ use App\Http\Controllers\Frontend\FlashSaleController;
 use App\Http\Controllers\Frontend\FrontendProductController;
 use App\Http\Controllers\Frontend\HomeController;
 use App\Http\Controllers\Frontend\NewsletterController;
+use App\Http\Controllers\Frontend\PageController;
 use App\Http\Controllers\Frontend\ProductTrackController;
 use App\Http\Controllers\Frontend\ReviewController;
 use App\Http\Controllers\Frontend\UserAddressController;
@@ -52,6 +54,20 @@ Route::get('change-product-list-view', [FrontendProductController::class, 'chage
 Route::get('show-product-modal/{id}', [HomeController::class, 'ShowProductModal'])->name('show-product-modal');
 
 ///////////////////////////////////////////
+////    About Page Routes
+///////////////////////////////////////////
+
+Route::get('about', [PageController::class, 'about'])->name('about');
+Route::get('terms-and-conditions', [PageController::class, 'termsAndCondition'])->name('terms-and-conditions');
+
+///////////////////////////////////////////
+////    Contact Page Routes
+///////////////////////////////////////////
+
+Route::get('contact', [PageController::class, 'contact'])->name('contact');
+Route::post('contact', [PageController::class, 'handleContactForm'])->name('handle-contact-form');
+
+///////////////////////////////////////////
 ////    Add To Cart Routes
 ///////////////////////////////////////////
 
@@ -73,14 +89,22 @@ Route::get('coupon-calculation', [CartController::class, 'couponCalculation'])->
 ////    Vendor Page Routes
 ///////////////////////////////////////////
 
-Route::get('vendor', [HomeController::class, 'vendorPage'])->name('vendor.index');
+Route::get('vendors', [HomeController::class, 'vendorPage'])->name('vendor.index');
 Route::get('vendor-product/{id}', [HomeController::class, 'vendorProductsPage'])->name('vendor.products');
 
 ///////////////////////////////////////////
 ////    Product Tracking Routes
 ///////////////////////////////////////////
 
-Route::get('product-traking', [ProductTrackController::class, 'index'])->name('product-traking.index');
+Route::get('product-tracking', [ProductTrackController::class, 'index'])->name('product-tracking.index');
+
+///////////////////////////////////////////
+////    Blog Routes
+///////////////////////////////////////////
+
+Route::get('blog-details/{slug}', [BlogController::class, 'blogDetails'])->name('blog-details');
+Route::get('blog', [BlogController::class, 'blog'])->name('blog');
+
 
 ///////////////////////////////////////////
 ////    Add Product To Wishlist
@@ -159,6 +183,11 @@ Route::group(['middleware' => ['auth', 'verified'], 'prefix' => 'user', 'as' => 
     Route::get('review', [ReviewController::class, 'index'])->name('reviews.index');
     Route::post('review', [ReviewController::class, 'create'])->name('reviews.create');
 
+    ///////////////////////////////////////////
+    ////    Blog Comment Controller Routes
+    ///////////////////////////////////////////
+
+    Route::post('blog-comment', [BlogController::class, 'comment'])->name('blog-comment');
 
     ///////////////////////////////////////////
     ////    User Vendor Request Controller Routes
