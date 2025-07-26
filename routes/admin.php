@@ -227,7 +227,7 @@ Route::resource('blog-category', BlogCategoryController::class);
 ///////////////////////////////////////////
 
 Route::get('blog-comment', [BlogCommentController::class, 'index'])->name('blog-comment.index');
-Route::delete('blog-comment/{id}/destory', [BlogCommentController::class, 'destory'])->name('blog-comment.destory');
+Route::delete('blog-comment/{id}/destory', [BlogCommentController::class, 'destory'])->name('blog-comment.destroy');
 
 
 ///////////////////////////////////////////

@@ -15,8 +15,8 @@
                     <div class="col-12">
                         <h4>our latest blogs</h4>
                         <ul>
-                            <li><a href="#">home</a></li>
-                            <li><a href="#">blogs</a></li>
+                            <li><a href="/">home</a></li>
+                            <li><a href="{{ route('blog') }}">blogs</a></li>
                         </ul>
                     </div>
                 </div>

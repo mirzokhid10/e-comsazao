@@ -15,8 +15,8 @@
                     <div class="col-12">
                         <h4>blog dtails</h4>
                         <ul>
-                            <li><a href="#">blog</a></li>
-                            <li><a href="#">blog details</a></li>
+                            <li><a href="{{ route('blog') }}">blog</a></li>
+                            <li><a href="javascript:">blog details</a></li>
                         </ul>
                     </div>
                 </div>
@@ -43,6 +43,7 @@
                             <span><i class="fas fa-user-tie"></i> by {{ $blog->user->name }}</span>
                             <span><i class="fal fa-calendar-alt"></i>
                                 {{ date('M d Y', strtotime($blog->created_at)) }}</span>
+                            <span><i class="fal fa-comments"></i>{{ $blog->comments->count() }} Comments</span>
                         </p>
                         <div class="wsus__description_area">
                             <h1>{!! $blog->title !!}</h1>

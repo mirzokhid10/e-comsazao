@@ -10,6 +10,7 @@ use App\Traits\ImageUploadTrait;
 use App\Models\BlogCategory;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Str;
+use Illuminate\Validation\ValidationException;
 
 class BlogController extends Controller
 {
@@ -36,14 +37,19 @@ class BlogController extends Controller
      */
     public function store(Request $request)
     {
-        $request->validate([
-            'image' => ['required', 'image', 'max:3000'],
-            'title' => ['required', 'max:200', 'unique:blogs,title'],
-            'category' => ['required'],
-            'description' => ['required'],
-            'seo_title' => ['nullable', 'max:200'],
-            'seo_description' => ['nullable', 'max:200']
-        ]);
+        try {
+            $request->validate([
+                'image' => ['required', 'image', 'max:3000'],
+                'title' => ['required', 'max:200', 'unique:blogs,title'],
+                'category' => ['required'],
+                'description' => ['required'],
+                'seo_title' => ['nullable', 'max:200'],
+                'seo_description' => ['nullable', 'max:200']
+            ]);
+        } catch (ValidationException $e) {
+            notify()->error('You made some errors while creating blog');
+            return redirect()->back()->withErrors($e->errors())->withInput();
+        }
 
         $imagePath = $this->uploadImage($request, 'image', 'uploads');
 
