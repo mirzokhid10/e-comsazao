@@ -2,6 +2,7 @@
 
 namespace App\Providers;
 
+use App\Models\EmailConfiguration;
 use App\Models\GeneralSetting;
 use App\Models\LogoSetting;
 use Illuminate\Pagination\Paginator;
@@ -29,6 +30,13 @@ class AppServiceProvider extends ServiceProvider
 
         $generalSetting = GeneralSetting::first();
         $logoSetting = LogoSetting::first();
+        $mailSetting = EmailConfiguration::first();
+
+        Config::set('mail.mailers.smtp.host', $mailSetting->host);
+        Config::set('mail.mailers.smtp.port', $mailSetting->port);
+        Config::set('mail.mailers.smtp.encryption', $mailSetting->encryption);
+        Config::set('mail.mailers.smtp.username', $mailSetting->username);
+        Config::set('mail.mailers.smtp.password', $mailSetting->password);
 
         Config::set('app.timezone', $generalSetting->time_zone);
 

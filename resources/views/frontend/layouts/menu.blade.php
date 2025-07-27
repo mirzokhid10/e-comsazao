@@ -118,9 +118,8 @@
             <li><a href="{{ route('login') }}"><i class="fal fa-user"></i></a></li>
         @endif
     </ul>
-    {{-- {{ request()->search }} --}}
     <form action="{{ route('products.index') }}" method="GET">
-        <input type="text" placeholder="Search..." name="search" value="">
+        <input type="text" placeholder="Search..." name="search" value="{{ request()->search }}">
         <button type="submit"><i class="far fa-search"></i></button>
     </form>
 

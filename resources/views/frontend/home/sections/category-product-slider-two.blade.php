@@ -11,8 +11,8 @@
 
     if (array_keys($lastKey)[0] === 'category') {
         $category = \App\Models\Category::find($lastKey['category']);
-        $products = \App\Models\Product::withAvg('review', 'rating')
-            ->withCount('review')
+        $products = \App\Models\Product::withAvg('reviews', 'rating')
+            ->withCount('reviews')
             ->with(['category', 'productImageGalleries'])
             ->where('category_id', $category->id)
             ->orderBy('id', 'DESC')
@@ -20,8 +20,8 @@
             ->get();
     } elseif (array_keys($lastKey)[0] === 'sub_category') {
         $category = \App\Models\SubCategory::find($lastKey['sub_category']);
-        $products = \App\Models\Product::withAvg('review', 'rating')
-            ->withCount('review')
+        $products = \App\Models\Product::withAvg('reviews', 'rating')
+            ->withCount('reviews')
             ->with(['category', 'productImageGalleries'])
             ->where('sub_category_id', $category->id)
             ->orderBy('id', 'DESC')
@@ -29,8 +29,8 @@
             ->get();
     } else {
         $category = \App\Models\ChildCategory::find($lastKey['child_category']);
-        $products = \App\Models\Product::withAvg('review', 'rating')
-            ->withCount('review')
+        $products = \App\Models\Product::withAvg('reviews', 'rating')
+            ->withCount('reviews')
             ->with(['category', 'productImageGalleries'])
             ->where('child_category_id', $category->id)
             ->orderBy('id', 'DESC')

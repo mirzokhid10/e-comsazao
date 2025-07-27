@@ -18,19 +18,25 @@
 
                     if (array_keys($lastKey)[0] === 'category') {
                         $category = \App\Models\Category::find($lastKey['category']);
-                        $products = \App\Models\Product::where('category_id', $category->id)
+                        $products = \App\Models\Product::withAvg('reviews', 'rating')
+                            ->withCount('reviews')
+                            ->where('category_id', $category->id)
                             ->orderBy('id', 'DESC')
                             ->take(6)
                             ->get();
                     } elseif (array_keys($lastKey)[0] === 'sub_category') {
                         $category = \App\Models\SubCategory::find($lastKey['sub_category']);
-                        $products = \App\Models\Product::where('sub_category_id', $category->id)
+                        $products = \App\Models\Product::withAvg('reviews', 'rating')
+                            ->withCount('reviews')
+                            ->where('sub_category_id', $category->id)
                             ->orderBy('id', 'DESC')
                             ->take(6)
                             ->get();
                     } else {
                         $category = \App\Models\ChildCategory::find($lastKey['child_category']);
-                        $products = \App\Models\Product::where('child_category_id', $category->id)
+                        $products = \App\Models\Product::withAvg('reviews', 'rating')
+                            ->withCount('reviews')
+                            ->where('child_category_id', $category->id)
                             ->orderBy('id', 'DESC')
                             ->take(6)
                             ->get();
@@ -53,7 +59,7 @@
                                         <h5>{!! limitText($item->name) !!}</h5>
                                         <p class="wsus__pro_rating">
                                             @php
-                                                $avgRating = $item->review()->avg('rating');
+                                                $avgRating = $item->reviews()->avg('rating');
                                                 $fullRating = round($avgRating);
                                             @endphp
 
@@ -65,7 +71,7 @@
                                                 @endif
                                             @endfor
 
-                                            <span>({{ count($item->review) }} review)</span>
+                                            <span>({{ count($item->reviews) }} review)</span>
                                         </p>
                                         @if (checkDiscount($item))
                                             <p class="wsus__tk">{{ $settings->currency_icon }}{{ $item->offer_price }}

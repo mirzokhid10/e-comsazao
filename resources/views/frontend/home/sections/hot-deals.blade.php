@@ -1,135 +1,5 @@
-<section id="wsus__hot_deals" class="wsus__hot_deals_2">
+<section id="wsus__hot_deals" class="wsus__hot_deals_2 p-0">
     <div class="container">
-        <div class="row">
-            <div class="col-xl-12">
-                <div class="wsus__section_header">
-                    <h3>hot deals of the day</h3>
-                </div>
-            </div>
-        </div>
-        <div class="row hot_deals_slider_2">
-            <div class="col-xl-4 col-lg-6">
-                <div class="wsus__hot_deals_offer">
-                    <div class="wsus__hot_deals_img">
-                        <img src="{{ asset('frontend/images/pro0010.jpg') }}" alt="mobile" class="img-fluid w-100">
-                    </div>
-                    <div class="wsus__hot_deals_text">
-                        <a class="wsus__hot_title" href="product_details.html">apple smart watch</a>
-                        <p class="wsus__rating">
-                            <i class="fas fa-star"></i>
-                            <i class="fas fa-star"></i>
-                            <i class="fas fa-star"></i>
-                            <i class="fas fa-star"></i>
-                            <i class="fas fa-star-half-alt"></i>
-                            <span>(127 review)</span>
-                        </p>
-                        <p class="wsus__hot_deals_proce">$160 <del>$200</del></p>
-                        <P class="wsus__details">
-                            Lorem ipsum dolor sit amet, cons
-                            ectetur incid duut labore et dol.
-                            Re magna atellus in metus.
-                        </P>
-                        <ul>
-                            <li><button type="submit" class="add_cart" href="">add to cart</button></li>
-                            <li><a href="#"><i class="far fa-heart"></i></a></li>
-                            <li><a href="#"><i class="far fa-random"></i></a></li>
-                        </ul>
-                        <div class="simply-countdown simply-countdown-one"></div>
-                    </div>
-                </div>
-            </div>
-            <div class="col-xl-4 col-lg-6">
-                <div class="wsus__hot_deals_offer">
-                    <div class="wsus__hot_deals_img">
-                        <img src="{{asset('frontend/images/pro0011.jpg')}}" alt="mobile" class="img-fluid w-100">
-                    </div>
-                    <div class="wsus__hot_deals_text">
-                        <a class="wsus__hot_title" href="product_details.html">portable mobile Speaker</a>
-                        <p class="wsus__rating">
-                            <i class="fas fa-star"></i>
-                            <i class="fas fa-star"></i>
-                            <i class="fas fa-star"></i>
-                            <i class="fas fa-star"></i>
-                            <i class="fas fa-star-half-alt"></i>
-                            <span>(176 review)</span>
-                        </p>
-                        <p class="wsus__hot_deals_proce">$200 <del>$220</del></p>
-                        <P class="wsus__details">
-                            Lorem ipsum dolor sit amet, cons
-                            ectetur incid duut labore et dol.
-                            Re magna atellus in metus.
-                        </P>
-                        <ul>
-                            <li><a  type="submit" class="add_cart" href="#">add to cart</a></li>
-                            <li><a href="#"><i class="far fa-heart"></i></a></li>
-                            <li><a href="#"><i class="far fa-random"></i></a></li>
-                        </ul>
-                        <div class="simply-countdown simply-countdown-one"></div>
-                    </div>
-                </div>
-            </div>
-            <div class="col-xl-4 col-lg-6">
-                <div class="wsus__hot_deals_offer">
-                    <div class="wsus__hot_deals_img">
-                        <img src="{{ asset('frontend/images/pro0012.jpg') }}" alt="mobile" class="img-fluid w-100">
-                    </div>
-                    <div class="wsus__hot_deals_text">
-                        <a class="wsus__hot_title" href="product_details.html">apple smart watch</a>
-                        <p class="wsus__rating">
-                            <i class="fas fa-star"></i>
-                            <i class="fas fa-star"></i>
-                            <i class="fas fa-star"></i>
-                            <i class="fas fa-star"></i>
-                            <i class="fas fa-star-half-alt"></i>
-                            <span>(127 review)</span>
-                        </p>
-                        <p class="wsus__hot_deals_proce">$160 <del>$200</del></p>
-                        <P class="wsus__details">
-                            Lorem ipsum dolor sit amet, cons
-                            ectetur incid duut labore et dol.
-                            Re magna atellus in metus.
-                        </P>
-                        <ul>
-                            <li><button type="submit" class="add_cart" href="#">add to cart</button></li>
-                            <li><a href="#"><i class="far fa-heart"></i></a></li>
-                            <li><a href="#"><i class="far fa-random"></i></a></li>
-                        </ul>
-                        <div class="simply-countdown simply-countdown-one"></div>
-                    </div>
-                </div>
-            </div>
-            <div class="col-xl-4 col-lg-6">
-                <div class="wsus__hot_deals_offer">
-                    <div class="wsus__hot_deals_img">
-                        <img src="{{ asset('frontend/images/pro0013.jpg') }}" alt="mobile" class="img-fluid w-100">
-                    </div>
-                    <div class="wsus__hot_deals_text">
-                        <a class="wsus__hot_title" href="product_details.html">portable mobile Speaker</a>
-                        <p class="wsus__rating">
-                            <i class="fas fa-star"></i>
-                            <i class="fas fa-star"></i>
-                            <i class="fas fa-star"></i>
-                            <i class="fas fa-star"></i>
-                            <i class="fas fa-star-half-alt"></i>
-                            <span>(176 review)</span>
-                        </p>
-                        <p class="wsus__hot_deals_proce">$200 <del>$220</del></p>
-                        <P class="wsus__details">
-                            Lorem ipsum dolor sit amet, cons
-                            ectetur incid duut labore et dol.
-                            Re magna atellus in metus vulpue
-                            te eu sceleri que felis.
-                        </P>
-                        <ul>
-                            <li><button type="submit" class="add_cart" href="#">add to cart</button></li>
-                            <li><a href="#"><i class="far fa-heart"></i></a></li>
-                            <li><a href="#"><i class="far fa-random"></i></a></li>
-                        </ul>
-                        <div class="simply-countdown simply-countdown-one"></div>
-                    </div>
-                </div>
-            </div>
-        </div>
         <div class="wsus__hot_large_item">
             <div class="row">
                 <div class="col-xl-12">
@@ -150,21 +20,26 @@
                             <div class="wsus__product_item">
                                 <span class="wsus__new">{{ productType($product->product_type) }}</span>
                                 @if (checkDiscount($product))
-                                    <span class="wsus__minus">-{{ calculateDiscountPercent($product->price, $product->offer_price) }}%</span>
+                                    <span
+                                        class="wsus__minus">-{{ calculateDiscountPercent($product->price, $product->offer_price) }}%</span>
                                 @endif
                                 <a class="wsus__pro_link" href="{{ route('product-detail', $product->slug) }}">
-                                    <img src="{{ asset($product->thumb_image) }}" alt="product" class="img-fluid w-100 img_1" />
+                                    <img src="{{ asset($product->thumb_image) }}" alt="product"
+                                        class="img-fluid w-100 img_1" />
                                     <img src="
                                         @if (isset($product->productImageGalleries[0]->image)) {{ asset($product->productImageGalleries[0]->image) }}
                                         @else
                                             {{ asset($product->thumb_image) }} @endif
                                         "
-                                         alt="product" class="img-fluid w-100 img_2" />
+                                        alt="product" class="img-fluid w-100 img_2" />
                                 </a>
                                 <ul class="wsus__single_pro_icon">
-                                    <li><a href="#" data-bs-toggle="modal" data-bs-target="#exampleModal-{{ $product->id }}"
-                                           class="show_product_modal" data-id="{{ $product->id }}"><i class="far fa-eye"></i></a></li>
-                                    <li><a href="" class="add_to_wishlist" data-id="{{$product->id}}"><i class="far fa-heart"></i></a></li>
+                                    <li><a href="#" data-bs-toggle="modal"
+                                            data-bs-target="#exampleModal-{{ $product->id }}"
+                                            class="show_product_modal" data-id="{{ $product->id }}"><i
+                                                class="far fa-eye"></i></a></li>
+                                    <li><a href="" class="add_to_wishlist" data-id="{{ $product->id }}"><i
+                                                class="far fa-heart"></i></a></li>
 
                                     <li><a href="#"><i class="far fa-random"></i></a>
                                 </ul>
@@ -181,15 +56,17 @@
                                         <span>({{ $product->reviews_count }} review)</span>
                                     </p>
                                     <a class="wsus__pro_name"
-                                       href="{{ route('product-detail', $product->slug) }}">{{ limitText($product->name, 52) }}</a>
+                                        href="{{ route('product-detail', $product->slug) }}">{{ limitText($product->name, 52) }}</a>
                                     @if (checkDiscount($product))
-                                        <p class="wsus__price">{{ $settings->currency_icon }}{{ $product->offer_price }}
+                                        <p class="wsus__price">
+                                            {{ $settings->currency_icon }}{{ $product->offer_price }}
                                             <del>{{ $settings->currency_icon }}{{ $product->price }}</del>
                                         </p>
                                     @else
                                         <p class="wsus__price">{{ $settings->currency_icon }}{{ $product->price }}</p>
                                     @endif
-                                    <form class="shopping-cart-form" method="POST" action="{{ route('add-to-cart') }}">
+                                    <form class="shopping-cart-form" method="POST"
+                                        action="{{ route('add-to-cart') }}">
                                         @csrf
                                         <input type="hidden" name="product_id" value="{{ $product->id }}">
                                         <input type="hidden" name="qty" value="1">
@@ -199,7 +76,8 @@
                                                     @foreach ($variant->productVariantItems as $variantItem)
                                                         @if ($variantItem->status != 0)
                                                             <option value="{{ $variantItem->id }}"
-                                                                {{ $variantItem->is_default == 1 ? 'selected' : '' }}>{{ $variantItem->name }}
+                                                                {{ $variantItem->is_default == 1 ? 'selected' : '' }}>
+                                                                {{ $variantItem->name }}
                                                                 (${{ $variantItem->price }})
                                                             </option>
                                                         @endif
@@ -207,13 +85,14 @@
                                                 </select>
                                             @endif
                                         @endforeach
-                                        <input class="" name="qty" type="hidden" min="1" max="100" value="1" />
+                                        <input class="" name="qty" type="hidden" min="1"
+                                            max="100" value="1" />
                                         <button class="add_cart" type="submit">add to cart</button>
                                     </form>
                                 </div>
                             </div>
                         </div>
-                        {{--                        <x-product-card :product="$product" :key="$key" />--}}
+                        {{--                        <x-product-card :product="$product" :key="$key" /> --}}
                     @endforeach
                 @endforeach
             </div>
@@ -274,7 +153,8 @@
                 <div class="col-xl-2 col-6 col-sm-6 col-md-4 col-lg-3">
                     <a class="wsus__hot_deals__single" href="#">
                         <div class="wsus__hot_deals__single_img">
-                            <img src="{{asset('frontend/images/pro4_4.jpg')}}" alt="bag" class="img-fluid w-100">
+                            <img src="{{ asset('frontend/images/pro4_4.jpg') }}" alt="bag"
+                                class="img-fluid w-100">
                         </div>
                         <div class="wsus__hot_deals__single_text">
                             <h5>men's casual watch</h5>
@@ -312,7 +192,8 @@
                 <div class="col-xl-2 col-6 col-sm-6 col-md-4 col-lg-3">
                     <a class="wsus__hot_deals__single" href="#">
                         <div class="wsus__hot_deals__single_img">
-                            <img src="{{asset('frontend/images/pro9_9.jpg')}}" alt="bag" class="img-fluid w-100">
+                            <img src="{{ asset('frontend/images/pro9_9.jpg') }}" alt="bag"
+                                class="img-fluid w-100">
                         </div>
                         <div class="wsus__hot_deals__single_text">
                             <h5>men's sholder bag</h5>
@@ -330,7 +211,8 @@
                 <div class="col-xl-2 col-6 col-sm-6 col-md-4 col-lg-3">
                     <a class="wsus__hot_deals__single" href="#">
                         <div class="wsus__hot_deals__single_img">
-                            <img src="{{asset('frontend/images/pro10.jpg')}}" alt="bag" class="img-fluid w-100">
+                            <img src="{{ asset('frontend/images/pro10.jpg') }}" alt="bag"
+                                class="img-fluid w-100">
                         </div>
                         <div class="wsus__hot_deals__single_text">
                             <h5>MSI gaming chair</h5>
@@ -424,7 +306,8 @@
                 <div class="col-xl-2 col-6 col-sm-6 col-md-4 col-lg-3">
                     <a class="wsus__hot_deals__single" href="#">
                         <div class="wsus__hot_deals__single_img">
-                            <img src="{{asset('frontend/images/pro10.jpg')}}" alt="bag" class="img-fluid w-100">
+                            <img src="{{ asset('frontend/images/pro10.jpg') }}" alt="bag"
+                                class="img-fluid w-100">
                         </div>
                         <div class="wsus__hot_deals__single_text">
                             <h5>MSI gaming chair</h5>
@@ -442,7 +325,8 @@
                 <div class="col-xl-2 col-6 col-sm-6 col-md-4 col-lg-3">
                     <a class="wsus__hot_deals__single" href="#">
                         <div class="wsus__hot_deals__single_img">
-                            <img src="{{asset('frontend/images/pro9_9.jpg')}}" alt="bag" class="img-fluid w-100">
+                            <img src="{{ asset('frontend/images/pro9_9.jpg') }}" alt="bag"
+                                class="img-fluid w-100">
                         </div>
                         <div class="wsus__hot_deals__single_text">
                             <h5>men's sholder bag</h5>
@@ -479,7 +363,8 @@
                 <div class="col-xl-2 col-6 col-sm-6 col-md-4 col-lg-3">
                     <a class="wsus__hot_deals__single" href="#">
                         <div class="wsus__hot_deals__single_img">
-                            <img src="{{asset('frontend/images/pro4_4.jpg')}}" alt="bag" class="img-fluid w-100">
+                            <img src="{{ asset('frontend/images/pro4_4.jpg') }}" alt="bag"
+                                class="img-fluid w-100">
                         </div>
                         <div class="wsus__hot_deals__single_text">
                             <h5>men's casual watch</h5>
@@ -541,8 +426,9 @@
                                 </div>
                                 <div class="col-xl-6 col-12 col-sm-12 col-md-12 col-lg-6">
                                     <div class="wsus__pro_details_text">
-                                        <a class="title" href="#">{{ limitText($product->name, 52)}}</a>
-                                        <p class="wsus__stock_area"><span class="in_stock">in stock</span> ({{$product->qty}} item)
+                                        <a class="title" href="#">{{ limitText($product->name, 52) }}</a>
+                                        <p class="wsus__stock_area"><span class="in_stock">in stock</span>
+                                            ({{ $product->qty }} item)
                                         </p>
                                         @if (checkDiscount($product))
                                             <h4>{{ $settings->currency_icon }}{{ $product->offer_price }}
@@ -594,7 +480,8 @@
                                             <h3>{{ $settings->currency_icon }}{{ $product->price }}</h3>
                                         </div>
                                         <ul class="wsus__button_area">
-                                            <li><button type="submit" class="add_cart" href="#">add to cart</button></li>
+                                            <li><button type="submit" class="add_cart" href="#">add to
+                                                    cart</button></li>
                                             <li><a class="buy_now" href="#">buy now</a></li>
                                             <li><a href="#"><i class="fal fa-heart"></i></a></li>
                                             <li><a href="#"><i class="far fa-random"></i></a></li>

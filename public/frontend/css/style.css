@@ -9800,3 +9800,30 @@ a:not([href]):not([class]):hover {
     background-color: #0b5ed7 !important;
     border-color: #0a58ca;
 }
+
+.wsus__monthly_top_banner {
+    position: relative !important;
+    width: 100% !important;
+    height: 150px !important;
+    margin-bottom: 25px !important;
+}
+
+.wsus__monthly_top_banner_img {
+    position: absolute !important;
+    width: 100% !important;
+    height: 100% !important;
+    object-fit: cover !important;
+    overflow: hidden !important;
+}
+
+.wsus__monthly_top_banner span {
+    position: absolute;
+    display: block;
+    width: 100%;
+    height: 100%;
+    top: 0;
+    left: 0;
+    margin-top: 17.5px;
+    border-radius: 3px;
+    background: rgba(0, 0, 0, 0.7);
+}
