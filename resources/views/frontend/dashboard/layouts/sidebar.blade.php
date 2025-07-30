@@ -27,7 +27,9 @@
                     href="{{ route('user.vendor-request.index') }}"><i class="far fa-user"></i> Request to be
                     vendor</a></li>
         @endif
-
+        <li><a class="{{ setActive(['user.messages.*']) }}" href="{{ route('user.messages.index') }}"><i
+                    class="fas fa-envelope"></i>Messages</a>
+        </li>
         <li>
             <form method="POST" action="{{ route('logout') }}" class="">
                 @csrf

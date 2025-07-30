@@ -5,6 +5,7 @@ namespace App\Providers;
 use App\Models\EmailConfiguration;
 use App\Models\GeneralSetting;
 use App\Models\LogoSetting;
+use App\Models\PusherSetting;
 use Illuminate\Pagination\Paginator;
 use Illuminate\Support\Facades\Config;
 use Illuminate\Support\Facades\Route;
@@ -31,6 +32,9 @@ class AppServiceProvider extends ServiceProvider
         $generalSetting = GeneralSetting::first();
         $logoSetting = LogoSetting::first();
         $mailSetting = EmailConfiguration::first();
+        $pusherSetting = PusherSetting::first();
+
+        Config::set('app.timezone', $generalSetting->time_zone);
 
         Config::set('mail.mailers.smtp.host', $mailSetting->host);
         Config::set('mail.mailers.smtp.port', $mailSetting->port);
@@ -38,10 +42,30 @@ class AppServiceProvider extends ServiceProvider
         Config::set('mail.mailers.smtp.username', $mailSetting->username);
         Config::set('mail.mailers.smtp.password', $mailSetting->password);
 
-        Config::set('app.timezone', $generalSetting->time_zone);
+        // Use database settings if available, otherwise use environment variables
+        if ($pusherSetting) {
+            Config::set('broadcasting.connections.pusher.key', $pusherSetting->pusher_key);
+            Config::set('broadcasting.connections.pusher.secret', $pusherSetting->pusher_secret);
+            Config::set('broadcasting.connections.pusher.app_id', $pusherSetting->pusher_app_id);
+            Config::set('broadcasting.connections.pusher.options.host', "api-" . $pusherSetting->pusher_cluster . ".pusher.com");
+        } else {
+            // Use environment variables as fallback
+            Config::set('broadcasting.connections.pusher.key', env('PUSHER_APP_KEY'));
+            Config::set('broadcasting.connections.pusher.secret', env('PUSHER_APP_SECRET'));
+            Config::set('broadcasting.connections.pusher.app_id', env('PUSHER_APP_ID'));
+            Config::set('broadcasting.connections.pusher.options.host', "api-" . env('PUSHER_APP_CLUSTER', 'mt1') . ".pusher.com");
+        }
 
-        View::composer('*', function ($view) use ($generalSetting, $logoSetting) {
-            $view->with(['settings' => $generalSetting, 'logoSetting' => $logoSetting]);
+
+        View::composer('*', function ($view) use ($generalSetting, $logoSetting, $pusherSetting) {
+            // Create a fallback pusher setting object if none exists in database
+            if (!$pusherSetting) {
+                $pusherSetting = (object) [
+                    'pusher_key' => env('PUSHER_APP_KEY'),
+                    'pusher_cluster' => env('PUSHER_APP_CLUSTER', 'mt1')
+                ];
+            }
+            $view->with(['settings' => $generalSetting, 'logoSetting' => $logoSetting, 'pusherSetting' => $pusherSetting]);
         });
     }
 }

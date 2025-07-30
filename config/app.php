@@ -123,4 +123,5 @@ return [
         'store' => env('APP_MAINTENANCE_STORE', 'database'),
     ],
     'Cart' => Gloudemans\Shoppingcart\Facades\Cart::class,
+
 ];

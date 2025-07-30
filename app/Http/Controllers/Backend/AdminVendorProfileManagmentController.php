@@ -35,7 +35,6 @@ class AdminVendorProfileManagmentController extends Controller
      */
     public function store(Request $request)
     {
-        dd(Auth::user());
 
         try {
             $request->validate([

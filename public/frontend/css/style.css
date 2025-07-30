@@ -9827,3 +9827,25 @@ a:not([href]):not([class]):hover {
     border-radius: 3px;
     background: rgba(0, 0, 0, 0.7);
 }
+
+.wsus__chat_area {
+    position: relative;
+    height: 70vh;
+    display: flex;
+    flex-direction: column;
+    overflow: hidden;
+}
+
+.wsus__chat_area_body {
+    flex: 1;
+    overflow-y: auto;
+    padding: 10px;
+}
+
+.wsus__chat_area_footer {
+    flex-shrink: 0;
+    width: 100%;
+    padding: 10px;
+    background-color: #fff;
+    border-top: 1px solid #ccc;
+}

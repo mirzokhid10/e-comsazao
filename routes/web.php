@@ -14,12 +14,15 @@ use App\Http\Controllers\Frontend\ProductTrackController;
 use App\Http\Controllers\Frontend\ReviewController;
 use App\Http\Controllers\Frontend\UserAddressController;
 use App\Http\Controllers\Frontend\UserDashboardController;
+use App\Http\Controllers\Frontend\UserMessageController;
 use App\Http\Controllers\Frontend\UserProfileController;
 use App\Http\Controllers\Frontend\UserOrderController;
 use App\Http\Controllers\Frontend\UserVendorRequestController;
 use App\Http\Controllers\Frontend\WishListController;
 use App\Http\Controllers\ProfileController;
 use Illuminate\Support\Facades\Route;
+use Illuminate\Support\Facades\Broadcast;
+use Illuminate\Support\Facades\Log;
 
 Route::get('/', [HomeController::class, 'index'])->name('home');
 
@@ -30,6 +33,34 @@ Route::middleware('auth')->group(function () {
 });
 
 require __DIR__ . '/auth.php';
+
+// Broadcasting authentication routes
+Route::post('/broadcasting/auth', function () {
+    Log::info('Broadcasting auth request', [
+        'user' => \Illuminate\Support\Facades\Auth::user()->id,
+        'channel' => request()->input('channel_name'),
+        'socket_id' => request()->input('socket_id')
+    ]);
+
+    try {
+        $response = Broadcast::auth(request());
+        Log::info('Broadcasting auth success', ['response' => $response]);
+        return $response;
+    } catch (\Exception $e) {
+        Log::error('Broadcasting auth error', ['error' => $e->getMessage()]);
+        return response()->json(['error' => $e->getMessage()], 403);
+    }
+})->middleware(['web', 'auth']);
+
+// Test broadcasting route
+Route::get('/test-broadcasting', function () {
+    return response()->json([
+        'broadcasting_default' => config('broadcasting.default'),
+        'pusher_key' => config('broadcasting.connections.pusher.key'),
+        'pusher_cluster' => config('broadcasting.connections.pusher.options.cluster'),
+        'auth_endpoint' => '/broadcasting/auth'
+    ]);
+});
 
 ///////////////////////////////////////////
 ////    Admin Controller Route
@@ -128,6 +159,15 @@ Route::group(['middleware' => ['auth', 'verified'], 'prefix' => 'user', 'as' => 
     Route::get('profile', [UserProfileController::class, 'index'])->name('profile'); // user.profile
     Route::put('profile', [UserProfileController::class, 'updateProfile'])->name('profile.update'); // user.profile.update
     Route::post('profile', [UserProfileController::class, 'updatePassword'])->name('profile.update.password'); // user.profile.password
+
+    ///////////////////////////////////////////
+    ////    User Message Controller Route
+    ///////////////////////////////////////////
+
+    Route::get('messages', [UserMessageController::class, 'index'])->name('messages.index');
+    Route::post('send-message', [UserMessageController::class, 'sendMessage'])->name('send-message');
+    Route::get('get-messages', [UserMessageController::class, 'getMessages'])->name('get-messages');
+    Route::post('mark-message-seen', [UserMessageController::class, 'markMessageSeen'])->name('mark-message-seen');
 
     ///////////////////////////////////////////
     ////    User Address Controller Route

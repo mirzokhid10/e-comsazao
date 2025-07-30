@@ -20,7 +20,6 @@
                                             data-toggle="list" href="#list-profile" role="tab">Email Configuration</a>
                                         <a class="list-group-item list-group-item-action" id="list-messages-list"
                                             data-toggle="list" href="#list-messages" role="tab">Logo and Favicon</a>
-
                                         <a class="list-group-item list-group-item-action" id="list-pusher-list"
                                             data-toggle="list" href="#pusher-setting" role="tab">Pusher Setting</a>
                                     </div>

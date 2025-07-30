@@ -6,22 +6,26 @@
                 @method('PUT')
                 <div class="form-group">
                     <label>pusher app id</label>
-                    <input type="text" class="form-control" name="pusher_app_id" value="">
+                    <input type="text" class="form-control" name="pusher_app_id"
+                        value="{{ @$pusherSettings->pusher_app_id }}">
                 </div>
 
                 <div class="form-group">
                     <label>pusher key</label>
-                    <input type="text" class="form-control" name="pusher_key" value="">
+                    <input type="text" class="form-control" name="pusher_key"
+                        value="{{ @$pusherSettings->pusher_key }}">
                 </div>
 
                 <div class="form-group">
                     <label>pusher secret</label>
-                    <input type="text" class="form-control" name="pusher_secret" value="">
+                    <input type="text" class="form-control" name="pusher_secret"
+                        value="{{ @$pusherSettings->pusher_secret }}">
                 </div>
 
                 <div class="form-group">
                     <label>pusher cluster</label>
-                    <input type="text" class="form-control" name="pusher_cluster" value="">
+                    <input type="text" class="form-control" name="pusher_cluster"
+                        value="{{ @$pusherSettings->pusher_cluster }}">
                 </div>
 
                 <button type="submit" class="btn btn-primary">Update</button>

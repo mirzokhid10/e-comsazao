@@ -1,6 +1,6 @@
 <?php
 
-namespace App\Http\Controllers\backend;
+namespace App\Http\Controllers\Backend;
 
 use App\Models\Category;
 use App\Models\HomePageSetting;
@@ -19,13 +19,16 @@ class HomePageSettingController extends Controller
         $sliderSectionOne = HomePageSetting::where('key', 'product_slider_section_one')->first();
         $sliderSectionTwo = HomePageSetting::where('key', 'product_slider_section_two')->first();
         $sliderSectionThree = HomePageSetting::where('key', 'product_slider_section_three')->first();
-        return view('admin.home-page-setting.index',
+        return view(
+            'admin.home-page-setting.index',
             compact(
                 'categories',
                 'popularCategorySection',
                 'sliderSectionOne',
                 'sliderSectionTwo',
-                'sliderSectionThree'));
+                'sliderSectionThree'
+            )
+        );
     }
 
     /**
@@ -110,7 +113,6 @@ class HomePageSettingController extends Controller
 
         notify()->success('Popular Category Section Slider One Updated Successfully!');
         return redirect()->back();
-
     }
 
     public function updateProductSliderSectionTwo(Request $request)

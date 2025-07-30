@@ -36,6 +36,7 @@ use App\Http\Controllers\Backend\OrderController;
 use App\Http\Controllers\Backend\TransactionController;
 use App\Http\Controllers\Backend\HomePageSettingController;
 use App\Http\Controllers\Backend\ManageUserController;
+use App\Http\Controllers\Backend\MessageController;
 use App\Http\Controllers\Backend\SubscriberController;
 use App\Http\Controllers\Backend\TermsAndConditionController;
 use App\Http\Controllers\Backend\VendorConditionController;
@@ -197,6 +198,15 @@ Route::resource('order', OrderController::class);
 ///////////////////////////////////////////
 
 Route::get('transaction', [TransactionController::class, 'index'])->name('transaction');
+
+///////////////////////////////////////////
+////    Message Controller Route
+///////////////////////////////////////////
+
+Route::get('message', [MessageController::class, 'index'])->name('message.index');
+Route::get('get-message', [MessageController::class, 'getMessages'])->name('get-message');
+Route::post('send-message', [MessageController::class, 'sendMessage'])->name('send-message');
+Route::post('mark-message-seen', [MessageController::class, 'markMessageSeen'])->name('mark-message-seen');
 
 ///////////////////////////////////////////
 ////    Home Page Setting Controller Route

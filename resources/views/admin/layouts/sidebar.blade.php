@@ -160,6 +160,13 @@
          </ul>
 
          <ul class="sidebar-menu">
+             <li class="menu-header">Messages</li>
+             <li><a class="nav-link {{ setActive(['admin.message.index']) }}"
+                     href="{{ route('admin.message.index') }}"><i class="fas fa-envelope"></i>
+                     <span>Messages</span></a></li>
+         </ul>
+
+         <ul class="sidebar-menu">
              <li class="menu-header">Categories</li>
              <li
                  class="dropdown {{ setActive(['admin.category.*', 'admin.sub-category.*', 'admin.child-category.*']) }}">
