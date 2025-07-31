@@ -374,7 +374,8 @@
                         <button type="submit" class="btn add_cart mt-4 send-button">Send</button>
 
                     </form>
-
+                    {{-- <div class="alert alert-success mt-2"><a href="{{ route('user.messages.index') }}"
+                            class="text-primary">Click here</a> for go to messenger.</div> --}}
                 </div>
 
             </div>
@@ -388,7 +389,6 @@
         $(document).ready(function() {
             $('.message_modal').on('submit', function(e) {
                 e.preventDefault();
-                alert('test');
                 let formData = $(this).serialize();
 
                 $.ajax({
@@ -407,7 +407,7 @@
                     success: function(response) {
                         $('.message-box').val('');
                         $('.modal-body').append(
-                            `<div class="alert alert-success mt-2"><a href="{{ route('user.messages.index') }}" class="text-primary">Click here</a> for go to messenger.</div>`
+                            `<div class="alert alert-success mt-4"><a href="{{ route('user.messages.index') }}" class="text-primary">Click here</a> for go to messenger.</div>`
                         )
                         toastr.success(response.message);
                     },

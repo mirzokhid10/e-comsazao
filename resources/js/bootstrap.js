@@ -14,9 +14,13 @@ window.Pusher = Pusher;
 
 window.Echo = new Echo({
     broadcaster: "pusher",
-    key: import.meta.env.VITE_PUSHER_APP_KEY,
-    cluster: import.meta.env.VITE_PUSHER_APP_CLUSTER,
+    key: PUSHER.key,
+    cluster: PUSHER.cluster ?? "mt1",
     forceTLS: true,
+    wsHost: `ws-${PUSHER.cluster}.pusher.com`,
+    wsPort: import.meta.env.VITE_PUSHER_PORT ?? 80,
+    wssPort: import.meta.env.VITE_PUSHER_PORT ?? 443,
+    forceTLS: (import.meta.env.VITE_PUSHER_SCHEME ?? "https") === "https",
     enabledTransports: ["ws", "wss"], // Only use WebSocket transport
     authEndpoint: "/broadcasting/auth",
     auth: {

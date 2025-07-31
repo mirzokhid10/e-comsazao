@@ -138,6 +138,9 @@
     <script src="{{ asset('frontend/js/jquery.classycountdown.js') }}"></script>
     <script src="{{ asset('frontend/js/main.js') }}"></script>
     <script src="{{ asset('frontend/js/jquery.classycountdown.js') }}"></script>
+
+    {{-- Pusher JS --}}
+    <script src="https://js.pusher.com/8.2.0/pusher.min.js"></script>
     <!-- Toastr JS Link -->
     <script src="https://cdnjs.cloudflare.com/ajax/libs/toastr.js/latest/toastr.min.js"></script>
 
@@ -145,6 +148,24 @@
 
     @notifyJs
 
+    {{-- Pusher JS --}}
+
+    <script>
+        // Enable pusher logging - disable in production!
+        Pusher.logToConsole = true;
+
+        var pusher = new Pusher('YOUR_PUSHER_KEY', {
+            cluster: 'YOUR_PUSHER_CLUSTER',
+            encrypted: true
+        });
+
+        var channel = pusher.subscribe('chat-channel');
+
+        channel.bind('message.sent', function(data) {
+            // Update your HTML here with jQuery
+            $('#messages').append('<p>' + data.message + '</p>');
+        });
+    </script>
 
     @include('frontend.layouts.scripts')
     @stack('scripts')
