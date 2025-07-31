@@ -9,6 +9,8 @@
         <li><a class="{{ setActive(['vendor.dashboard.*']) }}" href="{{ route('vendor.dashboard') }}">
                 <i class="fas fa-tachometer"></i>Dashboard</a></li>
         <li><a class="" href="{{ route('home') }}"><i class="fas fa-home"></i>Go To Home</a></li>
+        <li><a class="" href="{{ route('vendor.messages.index') }}"><i class="fas fa-envelope"></i>Messages</a>
+        </li>
         <li><a class="{{ setActive(['vendor.orders.*']) }}" href="{{ route('vendor.orders.index') }}">
                 <i class="fas fa-list-ul"></i> Orders</a></li>
         <li><a class="{{ setActive(['vendor.product.*']) }}" href="{{ route('vendor.products.index') }}">
