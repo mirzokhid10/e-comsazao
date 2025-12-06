@@ -23,7 +23,7 @@
     {{-- <!--============================
        MONTHLY TOP PRODUCT START
     ==============================--> --}}
-    @include('frontend.home.sections.top-product')
+    {{-- @include('frontend.home.sections.top-product') --}}
     {{-- <!--============================
        MONTHLY TOP PRODUCT END
     ==============================--> --}}
@@ -32,7 +32,7 @@
     {{-- <!--============================
         BRAND SLIDER START
     ==============================--> --}}
-    @include('frontend.home.sections.brand-slider')
+    {{-- @include('frontend.home.sections.brand-slider') --}}
 
     {{-- <!--============================
         BRAND SLIDER END
@@ -42,7 +42,7 @@
     {{-- <!--============================
         SINGLE BANNER START
     ==============================--> --}}
-    @include('frontend.home.sections.single-banner')
+    {{-- @include('frontend.home.sections.single-banner') --}}
 
     {{-- <!--============================
         SINGLE BANNER END
@@ -53,7 +53,7 @@
         HOT DEALS START
     ==============================--> --}}
 
-    @include('frontend.home.sections.hot-deals')
+    {{-- @include('frontend.home.sections.hot-deals') --}}
 
     {{-- <!--============================
         HOT DEALS END
@@ -64,7 +64,7 @@
         ELECTRONIC PART START
     ==============================--> --}}
 
-    @include('frontend.home.sections.category-product-slider-one')
+    {{-- @include('frontend.home.sections.category-product-slider-one') --}}
 
     {{-- <!--============================
         ELECTRONIC PART END
@@ -75,7 +75,7 @@
         ELECTRONIC PART START
     ==============================--> --}}
 
-    @include('frontend.home.sections.category-product-slider-two')
+    {{-- @include('frontend.home.sections.category-product-slider-two') --}}
 
     {{-- <!--============================
         ELECTRONIC PART END
@@ -85,7 +85,7 @@
     {{-- <!--============================
         LARGE BANNER  START
     ==============================--> --}}
-    @include('frontend.home.sections.large-banner')
+    {{-- @include('frontend.home.sections.large-banner') --}}
     {{-- <!--============================
         LARGE BANNER  END
     ==============================--> --}}
@@ -94,7 +94,7 @@
     {{-- <!--============================
         WEEKLY BEST ITEM START
     ==============================--> --}}
-    @include('frontend.home.sections.weekly-items')
+    {{-- @include('frontend.home.sections.weekly-items') --}}
     {{-- <!--============================
         WEEKLY BEST ITEM END
     ==============================--> --}}

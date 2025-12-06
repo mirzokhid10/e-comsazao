@@ -1,6 +1,8 @@
 <!DOCTYPE html>
 <html lang="en">
 
+<html lang="{{ str_replace('-', '_', app()->getLocale()) }}">
+
 <head>
     <meta charset="UTF-8">
     <meta name="csrf-token" content="{{ csrf_token() }}">
@@ -8,6 +10,8 @@
         content="width=device-width, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0, user-scalable=no, target-densityDpi=device-dpi" />
     <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;500;600;700;800&display=swap" rel="stylesheet">
     <title>@yield('title')</title>
+
+
     <link rel="icon" href="{{ asset(@$logoSetting?->favicon) }}" type="image/x-icon">
     <link rel="stylesheet" href="{{ asset('frontend/css/all.min.css') }}">
     <link rel="stylesheet" href="{{ asset('frontend/css/bootstrap.min.css') }}">
@@ -61,7 +65,7 @@
     <!--==========================
         POP UP START
     ===========================-->
-    <!-- <section id="wsus__pop_up">
+    {{-- <section id="wsus__pop_up">
         <div class="wsus__pop_up_center">
             <div class="wsus__pop_up_text">
                 <span id="cross"><i class="fas fa-times"></i></span>
@@ -82,7 +86,7 @@
                 </div>
             </div>
         </div>
-    </section> -->
+    </section> --}}
     <!--==========================
         POP UP END
     ===========================-->

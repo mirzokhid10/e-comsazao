@@ -27,4 +27,10 @@ class RouteServiceProvider extends ServiceProvider
             ->as('vendor.')
             ->group(base_path('routes/vendor.php'));
     }
+
+    protected $middlewareGroups = [
+        'web' => [
+            \App\Http\Middleware\SetLocale::class,
+        ],
+    ];
 }

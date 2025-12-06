@@ -13,10 +13,11 @@
             <div class="container">
                 <div class="row">
                     <div class="col-12">
-                        <h4>About</h4>
+                        <h4>{{ __('about.about') }}</h4>
                         <ul>
-                            <li><a href="{{ route('home') }}">home</a></li>
-                            <li><a href="javascript:;">About</a></li>
+
+                            <li><a href="{{ route('home') }}">{{ __('about.home') }}</a></li>
+                            <li><a href="javascript:;">{{ __('about.about') }}</a></li>
                         </ul>
                     </div>
                 </div>

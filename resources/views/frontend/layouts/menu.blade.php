@@ -10,6 +10,7 @@
             },
         ])
         ->get();
+
 @endphp
 
 <nav class="wsus__main_menu d-none d-lg-block">
@@ -56,23 +57,35 @@
                     </ul>
 
                     <ul class="wsus__menu_item">
-                        <li><a class="active" href="{{ url('/') }}">home</a></li>
+                        <li><a class="active" href="{{ url('/') }}">{{ __('app.home') }}</a></li>
                         <li><a class="{{ setActive(['vendor.index']) }}"
-                                href="{{ route('vendor.index') }}">vendors</a></li>
-
-                        <li><a class="{{ setActive(['flash-sale']) }}" href="{{ route('flash-sale') }}">flash Sale</a>
+                                href="{{ route('vendor.index') }}">{{ __('app.vendors') }}</a></li>
+                        <li><a class="{{ setActive(['flash-sale']) }}"
+                                href="{{ route('flash-sale') }}">{{ __('app.flash_sale') }}</a></li>
+                        <li><a class="{{ setActive(['blog']) }}" href="{{ route('blog') }}">{{ __('app.blog') }}</a>
                         </li>
-                        <li><a class="{{ setActive(['blog']) }}" href="{{ route('blog') }}">blog</a></li>
-                        <li><a class="{{ setActive(['about']) }}" href="{{ route('about') }}">about</a></li>
-                        <li><a class="{{ setActive(['contact']) }}" href="{{ route('contact') }}">contact</a></li>
-
-
+                        <li><a class="{{ setActive(['about']) }}"
+                                href="{{ route('about') }}">{{ __('app.about') }}</a></li>
+                        <li><a class="{{ setActive(['contact']) }}"
+                                href="{{ route('contact') }}">{{ __('app.contact') }}</a></li>
                     </ul>
                     <ul class="wsus__menu_item wsus__menu_item_right">
                         <li><a class="{{ setActive(['product-traking.*']) }}"
-                                href="{{ route('product-tracking.index') }}">track
-                                order</a></li>
-                        <li><a class="{{ setActive(['contact.*']) }}" href="{{ route('contact') }}">contact</a></li>
+                                href="{{ route('product-tracking.index') }}">{{ __('app.track_order') }}</a></li>
+
+                        <li><a class="{{ setActive(['contact.*']) }}"
+                                href="{{ route('contact') }}">{{ __('app.contact') }}</a></li>
+                        <li class="nav-item dropdown">
+                            <a class="nav-link dropdown-toggle p-0" data-bs-toggle="dropdown" href="#"
+                                role="button" aria-expanded="false">
+                                {{ strtoupper(session('locale', 'en')) }}
+                            </a>
+                            <ul class="dropdown-menu">
+                                <a class="dropdown-item lh-sm" href="{{ route('lang.switch', 'uz') }}">O'zbekcha</a>
+                                <a class="dropdown-item lh-sm" href="{{ route('lang.switch', 'en') }}">English</a>
+                                <a class="dropdown-item lh-sm" href="{{ route('lang.switch', 'ru') }}">Русский</a>
+                            </ul>
+                        </li>
                         @if (auth()->check())
                             @if (auth()->user()->role === 'user')
                                 <li><a href="{{ route('user.dashboard') }}">my account</a></li>
@@ -82,7 +95,7 @@
                                 <li><a href="{{ route('admin.dashboard') }}">Admin Dashboard</a></li>
                             @endif
                         @else
-                            <li><a href="{{ route('login') }}">login</a></li>
+                            <li><a href="{{ route('login') }}">{{ __('app.login') }}</a></li>
                         @endif
                     </ul>
                 </div>
@@ -119,7 +132,8 @@
         @endif
     </ul>
     <form action="{{ route('products.index') }}" method="GET">
-        <input type="text" placeholder="Search..." name="search" value="{{ request()->search }}">
+        <input type="text" placeholder="{{ __('app.search_placeholder') }}" name="search"
+            value="{{ request()->search }}">
         <button type="submit"><i class="far fa-search"></i></button>
     </form>
 
@@ -173,9 +187,7 @@
                         <li><a href="{{ route('home') }}">home</a></li>
                         <li><a href="{{ route('vendor.index') }}">vendor</a></li>
                         <li><a href="{{ route('blog') }}">blog</a></li>
-                        {{-- {{ route('about') }} --}}
                         <li><a href="{{ route('about') }}">about us</a></li>
-                        {{-- {{ route('contact') }} --}}
                         <li><a href="{{ route('contact') }}">contact</a></li>
                         <li><a href="{{ route('product-tracking.index') }}">track order</a></li>
                         <li><a href="{{ route('flash-sale') }}">flash sale</a></li>

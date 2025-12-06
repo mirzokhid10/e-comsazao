@@ -81,7 +81,6 @@
                         <li><button class="add_cart" type="submit">add to cart</button></li>
                         <li><a href="" class="add_to_wishlist" data-id="{{ $product->id }}"><i
                                     class="fal fa-heart"></i></a></li>
-                        {{-- <li><a href="#"><i class="far fa-random"></i></a></li> --}}
                     </ul>
                 </form>
                 <p class="brand_model"><span>brand :</span> {{ $product->brand->name }}</p>
